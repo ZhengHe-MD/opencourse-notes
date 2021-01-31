@@ -109,7 +109,7 @@ h_a{(k)} &= a \cdot k \space mod \space m \\
          &= \sum_{i=0}^{r-1} a_i k_i \space mod \space m
 \end{align*}
 $$
-于是得到 dot-product hash family $\mathcal{H} = \{h_a | a \in \{{0, 1,..., u-1}\}\}$。
+于是得到 dot-product hash family $\mathcal{H} = \{h_a | a \in \{ {0, 1,..., u-1} \} \}$。
 
 存储任意一个 $h_a \in \mathcal{H}$ 只需要存储一个 key，即 $a$ 本身。在 word RAM model 计算模型下，简单的数据 (如 keys) 都可以放入一个 machine word 中，这个计算模型的硬件实现能保证针对 machine words 的操作能在 $O(1)$ 的复杂度下完成，因此计算 $h_a{(k)}$ 的时间复杂度为 $O(1)$。
 
@@ -117,7 +117,7 @@ $$
 
 证明：对于任意两个不同的 keys，$k \ne k^{'}$。它们在 $m$ 进制下至少有某个位 ($d$) 不同，假设 $k_d \ne k_{d^{'}}$，$not \space d = \{0,1,...r-1\} \backslash \{d\}$，我们可以推导：
 $$
-\begin{align}
+\begin{align*}
 \underset{a}{\mathbb{P}}\{h_a(k) = h_a(k^{'})\} &= 
   \underset{a}{\mathbb{P}} \{\sum_{i=0}^{r-1}{a_i k_i} = \sum_{i=0}^{r-1}{a_i k_i^{'}}\space (mod\space m) \} \tag{1} \\
                                                 &=
@@ -133,7 +133,7 @@ $$
                                                 &=
   \underset{a_{not\space d}}{\mathbb{E}}[\frac{1}{m}] \tag{7} \\
                                                 &= \frac{1}{m}
-\end{align}
+\end{align*}
 $$
 其中：
 
