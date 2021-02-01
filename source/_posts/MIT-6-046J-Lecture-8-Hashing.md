@@ -1,7 +1,7 @@
 ---
 title: MIT-6.046J-Lecture-8-Hashing
 date: 2021-01-31 13:06:11
-tags:
+mathjax: true
 ---
 
 # Lecture 8: Hashing
@@ -39,7 +39,7 @@ Dictionary 不维护数据的顺序关系。
 
 我们可以通过 hashing with chaining + table doubling 来实现 $\theta{(1 + \alpha)}$ 的各操作事件复杂度，其中 $\alpha = \frac{n}{m}$ 为 load factor。在推导过程中，我们做了一个很强的假设：我们使用的 hash function 满足 simple uniform hashing assumption (SUHA)，即：
 $$
-\underset{k_1 \ne k_2}{\mathbb{P}}{\{h(k_1) = h(k_2)\}} = \frac{1}{m}
+\underset{k_1 \ne k_2}{ \mathbb{P} } {\{ h(k_1) = h(k_2) \}} = \frac{1}{m}
 $$
 即 hash function 的散列过程是随机的，但我们知道 hash function 必须是稳定的，即输入相同时输出相同。随机性和稳定性是对立的，本节课的目的就是去除 simple uniform hashing 的假设，来看我们如何在理论上达到相同的时空复杂度。
 

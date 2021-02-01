@@ -108,44 +108,11 @@ deploy:
   branch: gh-pages
   privateKey: /Users/hezheng/.ssh/id_ed25519
 
-# Markdown
-markdown:
-  render:
-    html: true # Doesn't escape HTML content so the tags will appear as html.
-    xhtmlOut: false # Parser will not produce XHTML compliant code.
-    breaks: true # Parser produces `<br>` tags every time there is a line break in the source document.
-    linkify: true # Returns text links as text.
-    typographer: true # Substitution of common typographical elements will take place.
-    quotes: '“”‘’' # "double" will be turned into “single”
-                   # 'single' will be turned into ‘single’
-  plugins:
-    - markdown-it-abbr
-    - markdown-it-container
-    - markdown-it-deflist
-    - markdown-it-emoji
-    - markdown-it-footnote
-    - markdown-it-imsize
-    - markdown-it-ins
-    - markdown-it-mark
-    - markdown-it-regexp
-    - markdown-it-sub
-    - markdown-it-sup
-    - markdown-it-checkbox
-    - '@iktakahiro/markdown-it-katex'
-    - name: markdown-it-container
-      options: note
-    - name: markdown-it-container
-      options: tip
-    - name: markdown-it-container
-      options: attention
-  anchors:
-    # Minimum level for ID creation. (Ex. h2 to h6)
-    level: 1
-    # A suffix that is prepended to the number given if the ID is repeated.
-    collisionSuffix: 'v'
-    # If `true`, creates an anchor tag with a permalink besides the heading.
-    permalink: false
-    # Class used for the permalink anchor tag.
-    permalinkClass: header-anchor
-    # The symbol used to make the permalink
-    permalinkSymbol: '# '
+mathjax:
+  tags: none # or 'ams' or 'all'
+  single_dollars: true # enable single dollar signs as in-line math delimiters
+  cjk_width: 0.9 # relative CJK char width
+  normal_width: 0.6 # relative normal (monospace) width
+  append_css: true # add CSS to pages rendered by MathJax
+  every_page: false # if true, every page will be rendered by MathJax regardless the `mathjax` setting in Front-matter
+
