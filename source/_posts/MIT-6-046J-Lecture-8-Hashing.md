@@ -152,9 +152,74 @@ CLRS 中还介绍了另一个 universal hash family：首先选择一个素数 $
 
 如果已知要插入 hash table 的所有 keys，数量不变，且该 hash table 只需要支持 `search(key)`，我们能做得更好吗？这便是 *static dictionary problem*。
 
-利用 universal hashing family，我们能做到平均情况下 (average case) ，时间复杂度 $O(1)$，空间复杂度 $O(n)$，但本节要介绍的 perfect hashing 能做到最坏情况下 (worst case)，时间复杂度 $O(1)$，空间复杂度 $O(n)$，但整个 hash table 构建的时间复杂度为 polynomial (w.h.p)。
+利用 universal hashing family，我们能做到平均情况下 (average case) ，时间复杂度 $O(1)$，空间复杂度 $O(n)$，但本节要介绍的 perfect hashing 能做到最坏情况下 (worst case)，时间复杂度 $O(1)$，空间复杂度 $O(n)$，但整个 hash table 构建的时间复杂度为 polynomial (w.h.p)，即 $O(n^c)$。
 
-(TODO)
+理解 perfect hashing 的直觉就是：使用 2-level hashing，即将 hashing with chaining 中的 chain (链表) 替换成另一个 hash table，且保证后者中不出现 hash collision，同时保证空间复杂度不变。
+
+算法如下：
+
+**Step 1：**从一个 universal hash family 中随机选取一个 hash function $h_1: \{0,1,...,u-1\} \rightarrow  \{0,1,...,m-1\}$，取 $m = \theta{(n)}$，即 $m$ 为最接近 $n$ 的素数，利用 $h1$ 将所有 keys/items 散列到不同的 slots 中，用链表串联。
+
+**Step 2：**针对任意 slot $j \in \{0,1,...,m-1\}$，记散列到 slot $j$ 中的 keys/items 总数为 $l_j$ ，即 $l_j = |\{i | h_1(k_i) = j\}|$。继续从 universal hash family 中随机选取一个 hash function $h_{2,j}: \{0,1,...,u-1\} \rightarrow \{0,1,...m_j\}$ ，其中 $l_j^2 \le m_j \le O(l_j^2)$，即取 $m_j$ 为大于或等于 $l_j^2$ 最近的素数，将 slot $j$ 中的链表替换成 $h_{2,j}$ 的 hash table。
+
+如下图所示：
+
+![](./2-level-hashing.png)
+
+此时算法的空间复杂度为 $O(n + \sum_{j=0}^{m-1}l_j^2)$，为了使其减小到 $O(n)$，我们还需要两个步骤：
+
+**Step 1.5：**如果 $\sum_{j=0}^{m-1}l_j^2 > cn$，$c$ 为某设定好的常数，则重新执行 *Step 1*。
+
+**Step 2.5：**当某 slot $j$ 中出现 $h_{2,j}(k_i) = h_{2,j}(k_i^{'})$，其中 $i \ne i^{'}$，则重新随机选取 $h_{2,j}$。
+
+上述两个步骤保证在第二层 hash table 中不存在 hash collision，且空间复杂度为 $O(n)$，因此 `search` 在最坏情况下的时间复杂度为 $O(1)$。现在我们分析一下两层 hash table 的构建时间复杂度，**Step 1** 和 **Step 2** 的空间复杂度都是 $O(n)$，对于 **Step 2.5** 来说：
+$$
+\begin{align*}
+	\underset{h_{2,j}}{\mathbb{P}} \{h_{2,j}(k_i) = h_{2,j}(k_i^{'})\} &\le \underset{i \ne i'}{\sum} \underset{h_{2,j}}{\mathbb{P}} \{h_{2,j}(k_i) = h_{2,j}(k_i^{'})\} \tag{1} \\
+	& \le \binom{l_j}{2} \cdot \frac{1}{l_j^2} \tag{2} \\
+	& \lt \frac{1}{2}
+\end{align*}
+$$
+其中：
+
+* (1)：$h_{2,j}$ 在 slot $j$ 中出现 hash collision 的概率小于或等于任意 $i$ 和 $i^{'}$ 组合出现 hash collision 的概率总和。若不同组合出现 hash collision 的事件相互独立，则取等号。
+* (1) $\rightarrow$ (2)：所有可能组合可能总数为 $\binom{l_j}{2}$，而每个组合下，$h_{2,j}$ 出现 hash collision 的概率为 $\frac{1}{m}$，即 $\frac{1}{l_j^{2}}$。
+
+以上计算过程与 birthday paradox 十分类似，有兴趣可阅读参考文献了解详情。其基本结论就是：假设一年有 $m$ 天，那么如果想让 $n$ 个人中存在 2 个人生日相同的概率为 $\frac{1}{2}$，则 $n \approx \sqrt{m}$。
+
+综上所述，**Step 2.5** 执行一次出现 hash collision 的概率小于 $\frac{1}{2}$，那么这个过程就与问题 **”抛硬币直到抛到一次正面为止”** 同构，在 Lecutre 7 中，我们计算过 $\mathbb{E}(\#trials) \le 2$，且在极大概率下 (w.h.p)，$\#trials = O(logn)$。另外通过 Chernoff bound (**TODO**) 可以证明在极大概率下 (w.h.p) $l_j = O(logn)$，实际上 $l_j = \theta{(\frac{logn}{log(logn)})}$，于是整个构建时间复杂度在极大概率下 (w.h.p) 为 $O(logn) \cdot O(logn) \cdot O(n) = O(nlog^{2}n)$，即上文提到的 polynomial (w.h.p)。
+
+针对 **Step 1.5**，定义 indicator variable：
+$$
+I_{i,i^{'}} = 
+\begin{cases}
+	1 & if\space h(k_i) = h(k_i^{'}) \\
+	0 & otherwise
+\end{cases}
+$$
+那么就可以计算第二层 hash table 总共占用的空间：
+$$
+\begin{align*}
+  \mathbb{E}[\sum_{j=0}^{m-1}l_j^{2}] &= \mathbb{E}[\sum_{i=1}^{n}\sum_{i'=1}^{n} I_{i,i'}] \\
+  &= \sum_{i=1}^{n}\sum_{i'=1}^{n} E(I_{i,i'}) \\
+  &= n + 2\binom{n}{2} \cdot \frac{1}{m} \\
+  &= O(n) \space becasue \space m = \theta(n)
+\end{align*}
+$$
+利用 Markov inequality，要使得：
+$$
+\underset{h_1}{\mathbb{p}}\{\sum_{j=0}^{m-1}l_j^2 \le cn \} \le \frac{1}{2}
+$$
+则需要：
+$$
+\frac{\sum_{j=0}^{m-1}l_j^2}{cn} \le \frac{1}{2}
+$$
+那么只要取得一个足够大的常数 $c$ 就能满足。现在又回到了问题 **”抛硬币直到抛到一次正面为止”** ，同样根据 Lecture 7，$\mathbb{E}(\#trials) \le 2$ ，且在极大概率下 (w.h.p)，$\#trials = O(logn)$。因此 **Step 1** 和 **Step 1.5** 的时间复杂度在极大概率下 (w.h.p) 为 $O(nlogn)$。
+
+## TODO
+
+* Churnoff bound 证明在极大概率下 (w.h.p) $l_j = O(logn)$。
+* 阅读 perfect hashing paper。
 
 ## 参考资料
 
