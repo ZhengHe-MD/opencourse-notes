@@ -41,7 +41,7 @@ Dictionary 不维护数据的顺序关系。
 $$
 \underset{k_1 \ne k_2}{ \mathbb{P} } {\{ h(k_1) = h(k_2) \}} = \frac{1}{m}
 $$
-即 hash function 的散列过程是随机的，但我们知道 hash function 必须是稳定的，即输入相同时输出相同。随机性和稳定性是对立的，本节课的目的就是去除 simple uniform hashing 的假设，来看我们如何在理论上达到相同的时空复杂度。
+即 hash function 的散列过程是随机的，但我们知道 hash function 必须是稳定的，即输入相同时输出相同。随机性和稳定性是对立的，本节课的目的就是去除 SUHA，来看我们如何在理论上达到相同的时空复杂度。
 
 ## 2. Universal Hashing
 
@@ -77,7 +77,7 @@ $$
 因此：
 $$
 \begin{align*}
-\mathbb{E}[\#keys\space hashing\space to\space the\space same \space slot \space as \space k_i] &= \mathbb{E}[\sum_{j=i}^{n}{I_{i,j}}] \\
+\mathbb{E}[\#keys\space hashing\space to\space the\space same \space slot \space as \space k_i] &= \mathbb{E}[\sum_{j=1}^{n}{I_{i,j}}] \\
  &= \sum_{j\ne i}^{n}\mathbb{E}[{I_{i,j}}] + \mathbb{E}[{I_{i,i}}] \\
  &= \frac{n}{m} + 1
 \end{align*}
