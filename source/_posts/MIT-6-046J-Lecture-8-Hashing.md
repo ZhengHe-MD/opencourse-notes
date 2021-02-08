@@ -187,7 +187,7 @@ $$
 
 以上计算过程与 birthday paradox 十分类似，有兴趣可阅读参考文献了解详情。其基本结论就是：假设一年有 $m$ 天，那么如果想让 $n$ 个人中存在 2 个人生日相同的概率为 $\frac{1}{2}$，则 $n \approx \sqrt{m}$。
 
-综上所述，**Step 2.5** 执行一次出现 hash collision 的概率小于 $\frac{1}{2}$，那么这个过程就与问题 **”抛硬币直到抛到一次正面为止”** 同构，在 Lecutre 7 中，我们计算过 $\mathbb{E}(\#trials) \le 2$，且在极大概率下 (w.h.p)，$\#trials = O(logn)$。另外通过 Chernoff bound (**TODO**) 可以证明在极大概率下 (w.h.p) $l_j = O(logn)$，实际上 $l_j = \theta{(\frac{logn}{log(logn)})}$，于是整个构建时间复杂度在极大概率下 (w.h.p) 为 $O(logn) \cdot O(logn) \cdot O(n) = O(nlog^{2}n)$，即上文提到的 polynomial (w.h.p)。
+综上所述，**Step 2.5** 执行一次出现 hash collision 的概率小于 $\frac{1}{2}$，那么这个过程就与问题 **”抛硬币直到抛到一次正面为止”** 同构，在 Lecutre 7 中，我们计算过 $\mathbb{E}(\#trials) \le 2$，且在极大概率下 (w.h.p)，$\#trials = O(logn)$。另外在 CLRS 的课后题 Problem 11-2 中证明了 $\mathbb{E}[max(l_j)] = \theta{(\frac{logn}{log(logn)})} = O(logn)$，于是整个构建时间复杂度在极大概率下 (w.h.p) 为 $O(logn) \cdot O(logn) \cdot O(n) = O(nlog^{2}n)$，即上文提到的 polynomial (w.h.p)。
 
 针对 **Step 1.5**，定义 indicator variable：
 $$
@@ -218,7 +218,6 @@ $$
 
 ## TODO
 
-* Churnoff bound 证明在极大概率下 (w.h.p) $l_j = O(logn)$。
 * 阅读 perfect hashing paper。
 
 ## 参考资料
@@ -226,7 +225,6 @@ $$
 * Course [home page](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/index.htm)
 * Lecture notes, [pdf](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/lecture-notes/MIT6_046JS15_lec08.pdf), [hand written](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-046j-design-and-analysis-of-algorithms-spring-2015/lecture-notes/MIT6_046JS15_writtenlec8.pdf)
 * Lecture [video](https://www.youtube.com/watch?v=z0lJ2k0sl1g&t=2s)
-
 * Birthday Paradox
   * [Better Explained: Understanding the Birthday Paradox](https://betterexplained.com/articles/understanding-the-birthday-paradox/)
   * [wikipedia: birthday problem](https://en.wikipedia.org/wiki/Birthday_problem)
@@ -236,5 +234,6 @@ $$
   * [wikipedia: word in computer science](https://en.wikipedia.org/wiki/Word_(computer_architecture))
   * [wikipedia: Word RAM](https://en.wikipedia.org/wiki/Word_RAM)
 * [CLRS](https://en.wikipedia.org/wiki/Introduction_to_Algorithms)
+  * Problem 11-2: slot-size bound for chaining
 * [perfect hashing paper: Storing a Sparse Table with O(1) Worst Case Access Time](https://cs.dartmouth.edu/~ac/Teach/CS105-Winter05/Handouts/fks-perfecthash.pdf)
 
