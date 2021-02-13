@@ -146,7 +146,31 @@ $$
 
 ### Example #3
 
-CLRS 中还介绍了另一个 universal hash family：首先选择一个素数 $p \ge u$，定义 $h_{ab}{k} = [(ak + b) mod \space p] \space mod \space m$，则 $\mathcal{H} = \{h_{ab} | a,b \in {0,1,...,u-1}\}$ 是一个 universal hashing famliy。
+CLRS 中还介绍了另一个 universal hash family：multiplicative hashing。首先选择一个素数 $p \ge u$，定义 $h_{ab}(k) = [(ak + b) mod \space p] \space mod \space m$，则 $\mathcal{H} = \{h_{ab} | a \in [1,u-1],b \in [0,u-1]\}$ 是一个 universal hashing famliy。
+
+multiplicative hashing 的直觉与轮盘赌 (Roulette Wheel) 的过程类似：
+
+<img src="./roulette-wheel.jpg" style="width: 480px"/>
+
+如果轮盘转动很多圈，那么最终小球落入的地方将变得不可预测，即随机。通常 $a$、$b$ 是比较大的整数，$a \cdot k + b$ 则是一个更大的数。$(a \cdot k + b)\space mod \space p$ 表示转动的总距离，$\lfloor [(a \cdot k + b)\space mod \space p]\space / \space m \rfloor$ 表示转动的总圈数；$[(a \cdot k + b)\space mod \space p]\space mod \space m$ 表示最后一圈转动的角度。
+
+证明：对于任意两个不同的 keys，$k \ne k^{'}$，如果发生 collision，即 $h(x) = h(y)$，那么存在某个整数 $i \in \lfloor 0, (p-1)/m \rfloor$，使得：
+$$
+a \cdot k + b \equiv a \cdot k^{'} + b + im \space (mod\space p)
+$$
+由于 $k \ne k^{'}$，$k - k^{'} \ne 0$，那么 $(k - k^{'})$ 存在模乘逆元，推导得到：
+$$
+a \equiv im(x-y)^{-1} \space (mod \space p)
+$$
+由于 $a \in [1, p-1]$，等式左边有 $p-1$ 种取值；对于固定的 $p$，等式右边最多存在 $\lfloor (p-1)/m \rfloor$ 种非 0 取值，于是有：
+$$
+\begin{align*}
+	\mathbb{P}[a \equiv im(x-y)^{-1}(mod\space p)] &= \frac{\lfloor (p-1)/m \rfloor}{p-1} \\
+	                                               &\le \frac{(p-1)/m}{p-1} \\
+	                                               &= \frac{1}{m}
+\end{align*}
+$$
+至此，我们证明了 multiplicative hashing family 是 universal hashing family。
 
 ## 3. Perfect Hashing
 
