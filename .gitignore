@@ -119,3 +119,4 @@ dist
 public/
 .deploy_git/
 themes/book
+db.json
