@@ -6,6 +6,8 @@ mathjax: true
 
 # Lecture 8: Hashing
 
+{% youtube z0lJ2k0sl1g %}
+
 > 冷知识：英文单词 'hash' 的本身含义为 "把...切成小块"，该词来源于法语中的 'hacher'，意思相似。而 'hatcher' 来源于古法语 'hache'，意为斧头。
 
 本节课主要分为 3 个部分：

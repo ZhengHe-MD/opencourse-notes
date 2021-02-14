@@ -8,6 +8,8 @@ mathjax:
 
 # Lecture 9: Hashing II
 
+{% youtube 'BRO7mVIFt08' %}
+
 ## 0. Overview
 
 * Table Resizing

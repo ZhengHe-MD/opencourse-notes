@@ -8,6 +8,8 @@ mathjax:
 
 # Lecture 8: Hashing-I
 
+{% youtube '0M_kIqhwbFo' %}
+
 ## 0. Overview
 
 * Dictionary problem
