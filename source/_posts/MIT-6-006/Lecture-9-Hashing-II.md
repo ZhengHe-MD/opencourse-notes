@@ -2,6 +2,8 @@
 title: Lecture-9-Hashing-II
 date: 2021-02-14 08:28:33
 tags:
+mathjax:
+- true
 ---
 
 # Lecture 9: Hashing II
@@ -132,7 +134,7 @@ rolling hash implementation 需要保存 $u\space mod\space p$ 和 $|s|$ 信息�
 
 ### 2.2.3 Complexity
 
-利用 Karp-Rabin Algorithm，每次计算 hash value 的时间从 $\theta(|s|)$ 降低到 $\theta(1)$，平均情况下时间复杂度为 $\theta(|t|) + (1 + \#matches)\theta(|s|)$，即 $O(|t| + |s|)$。最坏情况下时间复杂度仍为 $O(|t|\cdot |s|)$，即每次 $rs() == rt()$，触发字符串比较。
+利用 Karp-Rabin Algorithm，每次计算 hash value 的时间从 $\theta(|s|)$ 降低到 $\theta(1)$，平均情况下时间复杂度为 $\theta(|t|) + (1 + \#matches)\theta(|s|)$，即 $O(|t| + |s|)$。最坏情况下时间复杂度仍为 $O(|t|\cdot |s|)$，即每次 $rs() == rt()$ 都为 `true`，触发字符串比较。
 
 ## References
 
