@@ -71,7 +71,7 @@ $$
 由于 $|\mathcal{U}| \gg m$，在不知道 $n$ 的大小或无法找到通用的完美 hash function 时，必然会出现 collisions：即不同 key 被散列到同一个位置上。解决 collision 的方法有两种：
 
 * Chaining
-* Open addressing：在 [Lecture 10](TODO) 中介绍
+* Open addressing：在 [Lecture 10](../Lecture-10-Hashing-III) 中介绍
 
 ### 3.3 Chaining
 
@@ -135,10 +135,6 @@ $$
 * wikipedia: [SUHA](https://en.wikipedia.org/wiki/SUHA_(computer_science))、[Hash function](https://en.wikipedia.org/wiki/Hash_function)、[Universal hashing](https://en.wikipedia.org/wiki/Universal_hashing)
 * MIT 6.006 lecture notes, [handwritten](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec08_orig.pdf), [typed notes](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec08.pdf), [video](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/lecture-8-hashing-with-chaining/)
 * CSPC 131, Data Structures, [Multiplicative Hashing](https://www.youtube.com/watch?v=BmKMzAt2Gjc&list=PLqODvuetmZCT1sN3Vd0vwvHeJPa3vSrC9&index=68)
-
-## TODO
-
-* Lecture 10 的链接
 
 
 
