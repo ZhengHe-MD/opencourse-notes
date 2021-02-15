@@ -123,12 +123,46 @@ $$
 
 ## 2. Cryptographic Hashing
 
+cryptographic hash function 可以将任意长度的数据稳定地 (deterministic) 转化成固定大小的 hash value，即 bit string，意外或恶意修改数据会造成 hash value 的大幅度变化。通常称待加密的数据为 message，加密后的 hash value 为 (message) digest。
 
+### 2.1 Desirable Properties
+
+假设 *d* 是 hash value 的 bit 数量，通常安全性较高的 $d \ge 160$，那么理想中的 cryptographic hash function 应该具备以下特性：
+
+* **One-Way (OW)** (pre-image resistance)： 通过 digest 找到一条 message 计算上不可行。即给定 $ y \in_{R} \{0, 1\}^d$，找到 $x$ 满足 $h(x) = y$
+
+* **Collision-resistance (CR)**：找到存在 collision 的两条 message 计算上不可行。即找到 $x \ne x'$ 且 $h(x) = h(x')$
+
+* **Target collision-resistance (TCR)** (2nd pre-image resistance)：给定条 message，找到另一条与它冲突的 message' 计算上不可行。即给定 $x$，找到 $x'$ 满足 $h(x) = h(x')$
+
+CR 是 TCR 的充分非必要条件，而 OW 与 CR/TCR 之间没有直接关系。
+
+### 2.2 Applications
+
+* Password storage：在数据库存储 $h(PW)$，而不是 $PW$，当用户输入 $PW'$ 验证时，对比 $h(PW')$ 与 $h(PW)$ 即可。在该场景下使用的 cryptographic hash function 需满足 OW。攻击者通常无法获取 $PW$ 以及 $PW'$，因此 TCR 和 CR 并不是必须要求。
+* File modification detector：对于每个文件 $F$，保存 $h(F)$。检查 $F$ 在传输过程中是否被篡改，只需要重新计算 $h(F)$ 对比即可。常常用在文件下载的校验过程。在该场景下使用的 cryptographic hash function 需满足 TCR，防止攻击者篡改 $F$ 的同时保持 $h(F)$ 不变。
+* Digital signatures：用于非对称加密中。假设 Alice 拥有一个公钥 $PK_A$ 和一个私钥 $SK_A$，Alice 可以对 message $M$ 使用私钥加密，得到 $\sigma = sign(SK_A, M)$，Bob 知道 Alice 的公钥，可以用它来验证 $\sigma$ 中的消息 $M$ 是否来自于 Alice，即 $verify(M, \sigma, PK_A)$。攻击者想要伪装成 Alice，伪造 $M'$。通常对于数据量比较大的 $M$，我们会选择先做一次散列，即 $\sigma = sign(SK_A, h(M))$，此时 $h$ 需满足 TCR，因为我们不希望攻击者能够先让 Alice sign $x$，然后对外声称 Alice 发送的是消息 $x'$，即 $h(x) = h(x')$。
+
+### 2.3 Implementations
+
+cryptographic hash function 的核心是一个特殊的函数，其输入是 2 个固定大小的数据块，输出是对应的 hash value，如下图所示：
+
+![](./hash_function_structure.jpg)
+
+数据块的大小取决于算法本身，通常在 128 bits 到 512 bits 之间。上述函数是整个 cryptographic hash function 的最小计算单元，完整的加密过程是将原始待加密数据切分成固定大小，然后执行多轮次的上述计算，将前一次的结果与下一个数据块共同作为下一轮计算的输入，如下图所示：
+
+![](./hashing_algorithm.jpg)
+
+我们称这个过程为 avalanche effect of hashing (哈希雪崩效应)，即前面的数据块会不断影响后续的所有轮次加密结果。avalanche effect 使得一旦两条消息存在一点不同 (single bit)，digest 就会显著不同。
+
+综上所述，cryptographic hash function 需要决定如何切分 message，如何将前一次处理的结果输入到后一次计算中，在这两个设计点上的不同决定影响着函数的功能。
 
 ## References
 
 * MIT 6.006 lecture notes, [notes typed](https://ocw.mit.edu/courses/electrical-engineering-and-computer-science/6-006-introduction-to-algorithms-fall-2011/lecture-videos/MIT6_006F11_lec10.pdf), [video](https://www.youtube.com/watch?v=rvdJDijO2Ro&list=PLUl4u3cNGP61Oq3tWYp6V_F-5jb5L2iHb&index=10&t=2605s)
 * CLRS: 11.4, 11.3.3, 11.5
+* [Tutorialspoint: cryptography hash functions](https://www.tutorialspoint.com/cryptography/cryptography_hash_functions.htm)
+* [Cryptographic Hash-Function Basics: Deginitions, Implications, and Separations for Preimage Resistance, Second-Preimage Resistance and Collision Resistance](https://people.csail.mit.edu/alinush/6.857-spring-2015/papers/rogaway-hashes.pdf)
 
 ## TODO
 
