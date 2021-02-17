@@ -10,6 +10,7 @@
 
 ## CS 229r
 * [Lecture 1](/opencourse-notes/CS-229r/Lecture-1)
+* [Lecture 2](/opencourse-notes/CS-229r/Lecture-2)
 
 # 数据库
 
