@@ -88,7 +88,7 @@ $$
 \sum_{i=j}^{n}\mathbb{P}(X = x_i) = \mathbb{P}(X > \lambda) < \frac{\mathbb{E}X}{\lambda}
 $$
 
-> Markov's Inequality 为一个 non-negative random variable 取值超过某个常数 $\lambda$ 的概率给出上限
+> Markov's Inequality 为一个非负的随机变量取值超过某个常数 $\lambda$ 的概率给出上限
 
 有兴趣可以看一下 MIT RES.6-012 概率论入门课的相关视频：
 
