@@ -8,6 +8,9 @@
 ## MIT 6.046J
 * [Lecture 8: Hashing](/opencourse-notes/MIT-6-046J/Lecture-8-Hashing)
 
+## CS 229r
+* [Lecture 1](/opencourse-notes/CS-229r/Lecture-1)
+
 # 数据库
 
 # 摄影
