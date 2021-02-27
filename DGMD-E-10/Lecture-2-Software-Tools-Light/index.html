@@ -91,6 +91,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <h2 id="dgmd-e-10">DGMD E-10</h2>
 <ul>
 <li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
 </ul>
 
 </div>
@@ -150,109 +151,132 @@ function sidebar_toggle() {
         <div class="book-content">
           <div class="book-post">
   <h1 id="lecture-2-software-tools-light">Lecture 2: Software Tools &amp; Light</h1>
-<h2 id="quick-notes">Quick notes</h2>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/kpOoR6FzWaU" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="project-1">Project 1</h2>
+<p>介绍 <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/assignments/project1.pdf">project 1</a> 的内容，之后会单独介绍。</p>
+<h2 id="pinhole-lenses">Pinhole Lenses</h2>
+<p>在 Lecture 1 中利用 pinhole lenses 拍摄的照片 "高清版" 如下图所示：</p>
+<p><img src="./pinhole-lenses.png" /></p>
+<p>我们现在看到的这张照片并非原始照片。由于手工制作的 pinhole lenses 本身质量问题，原始图片偏黑白，因此老师简单地提高了对比度，但基本上保留了原始图片的其它状态。这张照片存在哪些问题？</p>
 <ul>
-<li>上节课用的 pinhole
+<li><strong>墙上有一些斜斜的线条，隐约能看到彩虹</strong>：可能是由 pinhole lenses 的质量加上后期拉高对比度导致。</li>
+<li><strong>有偏色，白平衡不准</strong></li>
+<li><strong>模糊</strong>：pinhole lenses 的质量差 (如孔不够小导致图片解析度不高)、曝光时间长 (23s)</li>
+<li><strong>照片中部偏东南方向有一颗体积较大的灰尘</strong></li>
+<li><strong>右上角有过曝、右下角有暗角</strong></li>
+</ul>
+<h2 id="software-tools">Software Tools</h2>
+<p>市面上有一部分软件可以帮助摄影师做后期处理：</p>
 <ul>
-<li>前后都贴了胶布。3D 打印材料有点问题</li>
-<li>在中间钻孔，越小越好</li>
+<li>Apple Aperture (已不再更新)</li>
+<li>Adobe
+<ul>
+<li>Lightroom/Lightroom Mobile Lightroom 系列面向摄影师，强化照片管理和后期</li>
+<li>Photoshop/Photoshop Express Photoshop 系列面向设计师，强化像素级的图片编辑功能</li>
 </ul></li>
-<li>上节课拍的图片
+<li>Filterstorm (iPhone/iPad)</li>
+<li>Instagram (smartphones)</li>
+<li>PhaseOne
 <ul>
-<li>有哪些问题？
+<li>CaptureOne</li>
+<li>MediaPro</li>
+</ul></li>
+<li>etc...</li>
+</ul>
+<p>还有一部分软件可以帮助摄影师操控相机，实现远程控制快门、按固定周期在给定时间范围内重复按快门等功能。</p>
+<h2 id="organization-techniques">Organization Techniques</h2>
+<p>照片管理是令摄影师比较头疼的事情之一。通常由三种管理方式：</p>
 <ul>
-<li>墙上有些斜斜的线条 (还有彩虹)</li>
-<li>white balance</li>
-<li>blurry</li>
-<li>灰尘 (很大)</li>
-<li>曝光问题
+<li>手动：利用操作系统的层级文件结构来组织</li>
+<li>托管：依靠软件，如 Lightroom 提供图片管理工具
 <ul>
-<li>右上角有过曝</li>
-<li>右下角有暗角 (黑斑)</li>
+<li>给每张图片打分 (#stars)，按分数整理</li>
+<li>给每张图片打标签，按标签整理，标签选择不能过于随意，否则容易变得无法维护</li>
 </ul></li>
-</ul></li>
-<li>老师实际上做了一点后期：拉高了对比度。因为原始图片偏黑白</li>
-<li>why blurry
+<li>手动 + 托管：用文件系统管理原始文件，用软件提供的管理工具做索引</li>
+</ul>
+<p><img src="./organization-1.png" /></p>
+<h2 id="metadata">Metadata</h2>
+<p>每个照片文件不仅存储着图像数据本身，也默默地存放了一些元数据，这些元数据可能包括：</p>
 <ul>
-<li>曝光时间长 (23s) 人可能移动</li>
-<li>Pinhole 本身的质量差</li>
-</ul></li>
-</ul></li>
-<li>file organization
+<li>曝光细节 (exposure details)</li>
+<li>曝光模式 (exposure mode)</li>
+<li>相机类型和配置</li>
+<li>镜头类型和配置</li>
+<li>拍摄<strong>地理位置</strong></li>
+<li>拍摄时间</li>
+<li>版权信息</li>
+<li>照片管理软件的元信息，如软件制造商、关键词、打分 (ratings) 等等</li>
+</ul>
+<p>例子如下图所示：</p>
+<p><img src="./metadata.png" style="height: 480px" /></p>
+<p>值得关注的是：<strong>地理位置</strong> 信息是比较敏感的信息，一不小心就有可能暴露你的家庭住址、常活动的地方。因此，常见的图片处理软件也会提供抹去敏感信息的功能；一些图片社交平台 (如 flickr) 会询问用户是否在上传照片时抹去相关敏感信息，甚至还会主动做一系列数据分析发现潜在的用户数据泄露问题。</p>
+<h2 id="backup">Backup</h2>
+<p>时时刻刻注意备份你的照片。可以用物理备份 (独立移动硬盘) + 云服务商备份，加上个人设备的本地硬盘三副本保障。</p>
+<p><img src="./backup.png"/></p>
+<h2 id="raw-processing">Raw Processing</h2>
+<p>为了尽可能地保留照片拍摄的更多数据，许多相机都支持将图片保存为 raw 文件。但 raw 并非一个标准、统一的图片格式：不同品牌的相机 raw 格式不同、同一品牌不同型号的相机 raw 格式可能不同。每种 raw 格式都必须使用单独的程序解析，因此它的可移植性比较差，甚至在很久以后，也许你都找不到打开某个品牌陈年相机的 raw 格式解析工具。</p>
+<p>为了改善这个问题，Adobe 在 2004 年发布了 DNG (Digital Negative Image File) 图片格式，旨在提供一种统一的 raw 格式，同时 Adobe 还开发了 Adobe DNG Converter，帮助摄影师将各种 raw 格式转换成统一的 DNG 格式。</p>
+<h2 id="ethics">Ethics</h2>
+<p>图像处理软件赋予了摄影师操控图中每个像素点的能力，但因此牺牲的是照片对现实的反映能力。人们无法判断任何一张照片是真实的 (genuine) 还是被修改过的 (manipulated)。当你用手机拍摄下某个场景时，可能手机里的拍照软件已经对它完成了轻度的后期加工，简单细微的后期加工不会引起人们对照片拍摄场景认识的改变，但用力过猛或者刻意为之则可以引发人们对一个场景的看法、甚至对某种认识、某种价值取向的改变。</p>
+<p>老师在课堂上分享了一篇文章：历史上著名的 P 图事件 (<a target="_blank" rel="noopener" href="https://petapixel.com/2011/07/28/photo-tampering-throughout-history/">Photo Tampering Throughout History</a>)，有兴趣也可以看看。同时老师也提到，在课程布置的项目要求中，会介绍清楚图像处理的界限 (where the line is)。</p>
+<h2 id="light">Light</h2>
+<p>光具有波粒二象性 (wave-particle duality)。其波动性对于人眼的感受是色彩，下图即为电磁波谱 (electromagnetic spectrum) 图：</p>
+<p><img src="./spectrum.png" /></p>
+<p>其中可见光的波长范围在 380nm 到 750 nm 之间，它与太阳电磁辐射中强度最大的光谱恰好一致，光的波动性还体现在光波运动的方向，即所谓偏振。光的粒子性对于人眼的感受是强度 (intensity)，可以简单理解成光的强度越大，一定时间内进入人眼的光子 (photon) 数量越多。</p>
+<h2 id="the-anatomy-of-eyes">The Anatomy of Eyes</h2>
+<p>下图是人眼的解剖图：</p>
+<p><img src="./human-eye-anatomy.png" style="width: 500px"/></p>
+<p>其中黄斑区 (macula) 的正中间存在一个结构叫中心凹 (fovea)，负责人眼正中心视野，对于人眼极其重要，在中心凹上存在两种细胞：视锥细胞 (cones) 和视杆细胞 (rods)，前者负责感知不同波段的光，即色彩，擅长捕捉画面细节；后者能够帮助人眼在弱光环境下运作，擅长捕捉光影移动。在中心凹中，越靠近中心 cones 越多、rods 越少，甚至在最中心出没有 rods，因此在夜晚，想捕捉更多的细节，不要将眼睛聚焦在亮点上，而是稍微移开一些。cones 和 rods 的对比如下所示：</p>
+<table>
+<thead>
+<tr class="header">
+<th>Property</th>
+<th>Rods</th>
+<th>Cones</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Vision Type</td>
+<td>Night Vision</td>
+<td>Day Vision</td>
+</tr>
+<tr class="even">
+<td>Light Sensitivity</td>
+<td>More</td>
+<td>Less</td>
+</tr>
+<tr class="odd">
+<td>Foveal Concentration</td>
+<td>Low</td>
+<td>High</td>
+</tr>
+<tr class="even">
+<td>Relative Presence</td>
+<td>22</td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Primary Stimulus</td>
+<td>Monochromatic (black/white)</td>
+<td>Trichomatic (color)</td>
+</tr>
+<tr class="even">
+<td>Detection</td>
+<td>Motion</td>
+<td>Detail</td>
+</tr>
+</tbody>
+</table>
+<p>不同的 cones 负责感受不同波长的光，其中负责中 (M) 长 (L) 波段 (绿光和红光) 的 cones 数量较多，负责短 (S) 波段 (蓝光) 的 cones 数量较少，其相对吸光度 (absorbance) 如下图所示：</p>
+<p><img src="./rods-and-cones-absorbance.png" /></p>
+<p>图中 R 为 rods 的吸光度，可见 rods 对红光几乎没有反应，因此在弱光环境下开红光，你的视觉系统还能感知到部分，开蓝、绿光则会让你失去对细节的感知。</p>
+<h2 id="references">References</h2>
 <ul>
-<li>os, file system, directory hierarchy</li>
-<li>Software, apple aperture</li>
-<li>combination
-<ul>
-<li>用文件系统管理原始文件，用 organization software 索引</li>
-</ul></li>
-<li>Keywords (like hash tag)
-<ul>
-<li>easy to explode, become hard to maintain</li>
-</ul></li>
-</ul></li>
-<li>raw images
-<ul>
-<li>同一个品牌相机，可能都会有不同的 raw 格式</li>
-<li>不同的 raw 格式需要单独解析。</li>
-<li>Raw 格式并不是一个容易移植 (portable) 的格式</li>
-<li>在很久以后，也许你就找不到打开以前 raw 格式的工具。不便于你翻阅照片</li>
-<li>adobe dng</li>
-</ul></li>
-<li>metadata
-<ul>
-<li>Exif</li>
-<li>GPS: pros &amp; cons, flickr (do a whole lot of analysis on the metadata, to prevent leaking data)
-<ul>
-<li>Warning/good to know</li>
-</ul></li>
-<li>Photoshop/other software:
-<ul>
-<li>will add extra metadata (manipulated by xxx, version xxx)</li>
-<li>can decide whether to keep the metadata when saving an image</li>
-</ul></li>
-</ul></li>
-<li>Software
-<ul>
-<li>take photos in intervals</li>
-<li>remote shutter button</li>
-</ul></li>
-<li>Ethics of editing photos
-<ul>
-<li>Mis-represent the scene</li>
-<li>photo tampering history</li>
-<li>Projects will specify where the line is</li>
-</ul></li>
-<li>lights
-<ul>
-<li>duality of waves and particles
-<ul>
-<li>Waves: color</li>
-<li>Particles: intensity</li>
-<li>visible spectrum
-<ul>
-<li>coincide with the maximum electronic-meganetic output from the sun</li>
-</ul></li>
-<li>Polarization: direction of waves</li>
-</ul></li>
-</ul></li>
-<li>the anatomy of eyes
-<ul>
-<li>Fovea: consentrated cells
-<ul>
-<li>越中心，cones 越多。甚至在最中心，没有 rods，因此在夜晚，想捕捉更多的细节，不要聚焦在亮点上，而是稍微移开一些视线</li>
-</ul></li>
-<li>rods
-<ul>
-<li>只有一种，无法区分色彩。因此如果在很暗的地方，色彩区分很不明显。</li>
-</ul></li>
-<li>Cones</li>
-<li>wave lengths
-<ul>
-<li>more cones on M (green) and L (red), less on S (blue)</li>
-<li>rods don't react to red signals。在暗房开红光，你的视觉还能感知到细节；如果是白光，你的 cones 会立即被干掉。导致无法看到任何细节</li>
-</ul></li>
-</ul></li>
+<li>DGMD-E-10, Lecture 2: <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/2.pdf">slides</a>, <a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=kpOoR6FzWaU&amp;list=PLQTAp69rtoj2eiirBotPSgOwVnHvQ3zQT&amp;index=2">video</a>, <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/assignments/project1.pdf">project 1</a></li>
+<li>Photo Tampering Throughout History, <a target="_blank" rel="noopener" href="https://petapixel.com/2011/07/28/photo-tampering-throughout-history/">blog</a></li>
+<li>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Electromagnetic_spectrum">electromagnetic spectrum</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Visible_spectrum">visible spectrum</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wave%E2%80%93particle_duality">wave-particle duality</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Human_eye">human eye</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Rod_cell">rod cell</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Cone_cell">cone cell</a></li>
 </ul>
 
 </div>
