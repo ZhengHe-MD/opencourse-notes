@@ -32,7 +32,7 @@ tags:
 
 ## Geometric Shapes
 
-<img src="./geometric-shapes.png" style="height: 600px" />
+<img src="./geometric-shapes.png" style="max-height: 600px" />
 
 ## 我的作品
 
@@ -40,37 +40,37 @@ tags:
 
 #### Triangle
 
-<img src="./triangle.jpg" style="height: 480px" />
+<img src="./triangle.jpg" style="max-height: 480px" />
 
 2021/02/27 摄于双秀公园，玉兰的花骨朵呈三角形，所有树枝的外围恰好包成一个三角形，有种分形的感觉。
 
 #### Rectangle
 
-<img src="./rectangle.jpg" style="height: 600px" />
+<img src="./rectangle.jpg" style="max-height: 600px" />
 
 2021/02/27 摄于双秀公园，一个锈蚀的路灯，整体是一个长方体。
 
 #### Pentagon
 
-<img src="./pentagon.jpg" style="height: 480px" />
+<img src="./pentagon.jpg" style="max-height: 480px" />
 
 2021/02/27 摄于双秀公园，有很多小朋友从公益组织购买了五边形鸟笼，涂上颜色挂在树上。
 
 #### Circle
 
-<img src="./circle.jpg" style="height: 480px" />
+<img src="./circle.jpg" style="max-height: 480px" />
 
 2021/02/27 摄于双秀公园，有种病树前头万木春之感。树状上的年轮是北京每年的气候印记。
 
 #### Waves
 
-<img src="./wave.jpg" style="height: 480px" />
+<img src="./wave.jpg" style="max-height: 480px" />
 
 2021/02/27 摄于双秀公园，景观树枝的剪影，有点波浪的形状，但并不是很顺畅的波浪。
 
 #### Star
 
-<img src="./star.jpg" style="height: 480px" />
+<img src="./star.jpg" style="max-height: 480px" />
 
 2021/02/27 摄于双秀公园，梧桐树皮的着色很讲究，恰好剥落了一块星型的树皮。梧桐树干就是一个天然的画板，大自然用它的风云变化在上面作画，只要带着想象力，在上面肯定能找到惊喜。
 
