@@ -21,4 +21,5 @@
 * [Lecture 1: Welcome!](/opencourse-notes/DGMD-E-10/Lecture-1-Welcome)
 * [Lecture 2: Software Tools & Light](/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light)
 * [Lecture 3: Exposure](/opencourse-notes/DGMD-E-10/Lecture-3-Exposure)
+* [Lecture 4: Exposure (continued)](/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
