@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/opencourse-notes/favicon.png" />
+    
+
+    <title>
+        
+          Lecture-4-Exposure-Continued - 公开课笔记
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/opencourse-notes/css/book.css">
+
+    
+<script src="/opencourse-notes/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-172943223-3', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/opencourse-notes/">
+    <img src="/opencourse-notes/favicon.png">
+    <span>公开课笔记</span>
+  </a>
+</div>
+    <div id="menu" class="book-menu hide">
+  <h1 id="算法与数据结构">算法与数据结构</h1>
+<h2 id="mit-6.006">MIT 6.006</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I">Lecture 8: Hashing I</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II">Lecture 9: Hashing II</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III">Lecture 10: Hashing III</a></li>
+</ul>
+<h2 id="mit-6.046j">MIT 6.046J</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing">Lecture 8: Hashing</a></li>
+</ul>
+<h2 id="cs-229r">CS 229r</h2>
+<ul>
+<li><a href="/opencourse-notes/CS-229r/Lecture-1">Lecture 1</a></li>
+<li><a href="/opencourse-notes/CS-229r/Lecture-2">Lecture 2</a></li>
+</ul>
+<h1 id="数据库">数据库</h1>
+<h1 id="摄影">摄影</h1>
+<h2 id="dgmd-e-10">DGMD E-10</h2>
+<ul>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure">Lecture 3: Exposure</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued">Lecture 4: Exposure (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
+</ul>
+
+</div>
+
+
+<script src="/opencourse-notes/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h1 id="lecture-4-exposure-continued">Lecture 4: Exposure (Continued)</h1>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/wEKAdQu0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="amount-of-available-light">1. Amount of Available Light</h2>
+<p>上节课我们强调过「选择正确的时间点」的重要性：晨曦和傍晚的光线柔和，色彩丰满，是户外摄影的不二选择。但有时候，拍摄环境中的曝光条件并不理想，摄影师也可以借助一些技巧来获得合适的曝光。</p>
+<p>当同一个场景中出现较大的光比时，可以采用包围曝光 (bracketing) 拍摄多张曝光程度不同的照片，再利用相机自带或者图像处理软件的后期功能，将这些照片合成，降低对比度；当场景中的光线过强时，容易在照片主体上产生强光和阴影，此时可以利用反光板 (reflector) 将光线反射到拍摄主体，得到更柔和一些的光线，同时减少阴影。如果没有专业的反光板，白纸 (white sheet) 和车的遮阳板 (sun visor) 都是不错的选择；当光线太弱时，可以借助人造光线，如台灯、球灯、闪光灯，来点亮场景；在一些特殊场景下，必要时也可以通过刻意过曝 (over-exposure) 或低曝 (under-exposure) 来表达主体。</p>
+<p>但即便有上述技巧存在，对户外摄影来说，「选择正确的时间点」依然是最需要优先保证的事情。</p>
+<h2 id="metering">2. Metering</h2>
+<p>光度计 (light meter) 是相机内部最重要的组件之一，负责测光，具备测光能力就意味着相机自身能够对当前场景中的光线强弱形成认知。在光度计中，很重要的一个概念就是「中间灰」 (middle grey)。简单来说，中间灰是在人眼感知 (perception) 下亮度位于黑和白正中间的一种灰色。基于中间灰，相机可以进一步建立亮度级别：</p>
+<p><img src="./light-stops.jpg" width="80%" /></p>
+<p>当场景中的光线进入相机时，相机会将场景划分成若干个方块区域，然后分别将每个小区域划分到某个亮度等级中，如下图所示：</p>
+<p><img src="./squares.jpg" width="80%" /></p>
+<p>然后根据预设的权重计算出整张图亮度的加权平均值，得到测光结果。不同的测光模式对图中不同区域设置的权重不同，通常专业相机提供点测光 (spot)、中央重点平均测光 (center-weighted)、区域测光 (zone) 等测光模式。</p>
+<h3 id="spot-metering">2.1 Spot Metering</h3>
+<p>点测光的权重分布如下图所示：</p>
+<p><img src="./spot.jpg" /></p>
+<p>即给予测光点周围很小的一块区域高权重，精确地告诉相机测光位置。当主体与非主体区域光比较高时，你也许需要刻意将非主体区域过曝或低曝，才能让主体的曝光正确，这时就可以利用这种测光模式。如果场景中存在合适的参照物，也可以利用参照物测光，后者可以通过先测光，后锁定曝光，再构图和对焦来实现。</p>
+<h3 id="center-weighted-metering">2.2 Center-Weighted Metering</h3>
+<p>中央重点平均测光的权重分布如下图所示：</p>
+<p><img src="./center-weighted.jpg" /></p>
+<p>拍摄者会习惯性的将主体放到场景的中央，因此给予越中心的区域越大的权重是一个符合拍摄者直觉的方案。但对于摄影师来说，中央构图通常不是好的选择，将主体放到中央会使得画面呆板，失去动感，很多情况下 1/3 构图是更好的选择。因此中央重点平均测光有时候对于摄影师来说不是最佳选择。</p>
+<h3 id="zone-metering">2.3 Zone Metering</h3>
+<p>区域测光中的区域就是上文提到的方块区域，每个厂商切分的方块个数、大小，评价的算法不尽相同，因此区域测光也是各个厂商自由发挥的地方，可以采用不同的策略，如给对焦区域更多的权重。区域测光并不完美，只是给到摄影师手中的一个选择。</p>
+<h2 id="exposure-compensation">3. Exposure Compensation</h2>
+<p>相机测光有时候并不准确，因为光度计是基于中间灰运作，遇到整体偏亮或偏暗的场景就会出现问题。想象一个整体偏亮的场景，如雪地、白沙滩，对于光度计来说，整个场景是过曝的，因此在非手动模式下，相机会通过自动调节曝光参数来减少曝光。但雪地、白沙滩本身就是一个明亮的场景，对于人来说，明亮的场景并不意味着过曝。此时，摄影师只能通过调节曝光补偿的方式来纠正相机的错误，如下图所示：</p>
+<p><img src="./exp-com.png" /></p>
+<p>类似地，在一个整体偏暗的场景，如日落剪影，对于光度计来说，整个场景是低曝的，因此在非手动模式下，相机会通过自动调节曝光参数来增加曝光。但剪影本身就是一个昏暗的场景，对于人来说，人影主体就应该是黑暗的，并不意味着低曝，如果相机增加了曝光，则会让剪影的特殊意境消失。此时就需要减小曝光补偿。</p>
+<p>以上两类场景，可以被概括为「白加黑减」。在实践中，通常比较小的曝光补偿，如 1/3 stops，就能满足需求。此外，还要注意增减曝光补偿时，可能会带来副作用。比如通过延长快门时间增加曝光，可能使得手持拍照的照片变模糊。</p>
+<h2 id="camera-modes">4. Camera Modes</h2>
+<p>许多相机会内置各种拍摄模式，通常「越专业的相机拍摄模式越少」，如下图所示：</p>
+<p><img src="./modes.png" /></p>
+<p>上图中，左边是普通机型 Nikon d40x，主拨盘上有许多模式，包括 A (光圈优先)、S (快门优先)、P (程序自动)、M (手动模式)、人像模式、风景模式、运动模式等等；右边是高端机型 Canon 5D，主拨盘上只有 Av (光圈优先)、Tv (快门优先)、P (程序自动)、M (手动)、B (bulb)。</p>
+<p>对于大部分摄影师来说，99% 以上的时间使用的都是光圈优先模式。假设 ISO 固定，光圈优先就是摄影师选择 F-number，相机选择快门速度。因为 F-number 可选的范围较少，通常在 F4 - F16 之间；而快门速度的可选范围很大，通常在 1/4000s 到 30s 之间。选定一个 F-number，相机很容易找到合理的快门速度，反之则不然。快门优先则是摄影师选择快门速度，相机选择 F-number，在一些捕捉运动瞬间的场景中常被使用。手动模式则是将所有参数放开给摄影师使用。在需要超长时间曝光，如拍摄星轨时，则会选择 B 模式。</p>
+<p>本质上，其它模式就是帮助拍摄者调节曝光参数，如雪地模式增加曝光补偿；人像模式选择最小的 F-number；风景模式降低 ISO；运动模式提高快门速度……</p>
+<p>专业摄影师具备相机曝光的基本知识，这足以让他们对各种场景应对自如，因此专业相机通常不提供如人像、风景、运动等模式。</p>
+<h2 id="flash-photography">5. Flash Photography</h2>
+<p>对于一般的拍摄者来说，打开闪光灯通常会毁了照片。在讨论它之前，先了解一下 inverse square law。</p>
+<h3 id="inverse-square-law">5.1 Inverse Square Law</h3>
+<p><img src="./inverse-square-law.png" /></p>
+<p>ISL 指：在点光源下，相同面积的受光区域接收到的光强度与它和点光源距离的平方成反比。如 2 倍的距离可获得 1/4 强度的光。这也是为什么在低亮度环境下，打开闪光灯会使得主体变量，背景变暗。这也是为什么我们常常能看到打开闪光灯的人像照片中，人脸惨白而不自然，背景由近及远迅速变暗。</p>
+<h3 id="guide-number">5.2 Guide Number</h3>
+<p>每个闪光设备会有一个 GN 帮助摄影师推算其它曝光参数，这里暂略。</p>
+<h3 id="x-sync-speed">5.3 X-Sync Speed</h3>
+<p><img src="./focal-plane.png" /></p>
+<p>闪光灯的速度通常为 1/6400s。在 Lecture 1 中曾经介绍快门的工作原理和背后的机械结构。如果想使用闪光灯拍照，就必须让闪光的整个过程，快门完全打开。当设置很短的快门时间时，快门甚至不会在某一瞬间完全打开，这时候如果使用闪光灯就可能让画面出现白色的光柱。通常称在闪光灯拍摄下，最小的安全快门速度为 X-Sync Speed，在佳能相机中是 1/200s 或 1/250s。</p>
+<h3 id="high-speed-photography">5.4 High Speed Photography</h3>
+<p><img src="./bullet.png" /></p>
+<p>在暗室中，通过长曝光、闪光灯、电路组合的方式可以拍摄出上述这样的子弹照片。有兴趣可以了解一下 [Dr. Edgerton](https://en.wikipedia.org/wiki/Doc_Edgerto) 的工作。</p>
+<h3 id="gone-wrong">5.5 Gone Wrong</h3>
+<p>下图是 Dan (授课老师) 的哥哥拍摄的一张照片：</p>
+<p><img src="./gone-wrong.png" /></p>
+<p>照片中存在的问题包括：红眼 (red eyes)、曝光时间较长 (2s) 导致云变模糊、地上的阴影比较生硬。红眼产生的原因在于闪光灯光线直射入眼睛后通过视网膜反射回到相机镜头，使得相机捕获到眼睛内部的色彩。内置在相机上的闪光灯通常与相机镜头距离很近：</p>
+<p><img src="./flash.png" /></p>
+<p>因此闪光灯发出的光线角度与镜头角度几乎相同。红眼的一种解决的办法就是拉开相机镜头和闪光灯的距离：</p>
+<p><img src="./separated-flash.png" /></p>
+<p>避免人眼反射的光线进入相机镜头。同时，由于闪光灯、镜头与主体间形成的夹角变大，画面主体的影子角度也变得更大，对画面造成的影响也将变小。</p>
+<h3 id="curtain-sync-flash">5.6 Curtain Sync Flash</h3>
+<p>前面提到，在 X-Sync 曝光时间内，会有一段充足的时间留给闪光灯发挥，假设为 1/400s，闪光灯闪光的时间很短，假设为 1/6400s，那么闪光的这段时间是放在快门刚打开时好，还是快门快关闭时好？前者被称为 front curtain sync，后者被称为 rear curtain sync。在实践中，摄影师应当根据具体情况具体分析。</p>
+<p><img src="./curtain-sync.png" /></p>
+<h3 id="stroboscopes">5.7 Stroboscopes</h3>
+<p>一些专业闪光灯具备频闪 (stroboscope) 功能，能按固定时间间隔闪光，配合暗室或弱光环境，就可以捕捉主体的连续运动行为，如：</p>
+<p><img src="./stroboscope.png" /></p>
+<h3 id="flash-fill">5.8 Flash Fill</h3>
+<p>在背光时，可以通过闪光灯来补光，如：</p>
+<p><img src="./fill-flash.jpg" /></p>
+<h2 id="critique-examples">6. Critique Examples</h2>
+<h3 id="city-sky">6.1 City Sky</h3>
+<p><img src="./city-sky.png" /></p>
+<p>评价：</p>
+<ul>
+<li>前景太空、太黑，没啥用处</li>
+<li>右上角的指示牌被截断了，让人感觉是无意中拍进来的</li>
+</ul>
+<h3 id="conductor">6.2 Conductor</h3>
+<p><img src="./conductor.png" height="480px" /></p>
+<p>说明：游行乐团训练中，指挥者站在梯子上指挥乐团演奏。因为画面中的颜色和光比不太协调，因此改成黑白模式。</p>
+<p>夸赞：</p>
+<ul>
+<li>将彩色照片转成黑白照片在这里可以防止观众因为色彩而分心</li>
+<li>指挥家的手部姿态很好</li>
+<li>梯子本身的引导线、地面上的引导线，都能将观众的眼神引到照片主体身上</li>
+</ul>
+<p>挑刺：</p>
+<ul>
+<li>如果在指挥者头上有一架直升机就更好了</li>
+<li>通常不会把主体放在照片中间 (反对观点：尽管指挥家在画面正中间，但画面整体并不是对称的，画面下部细节多，上部细节少，因此仍然有动感)</li>
+<li>如果能让正中间的乐手露脸就更好了 (反对观点：没有露脸正好表现气氛凝重)</li>
+<li>也许可以减少天空的比例，横向构图，展现更多的乐手 (笔者个人觉得不是个好建议)</li>
+</ul>
+<h2 id="references">References</h2>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=wEKAdQu0-lg&amp;list=PLQTAp69rtoj2eiirBotPSgOwVnHvQ3zQT&amp;index=4">video</a>, <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/4.pdf">slides</a></p></li>
+<li><p>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Doc_Edgerton">Doc Edgerton</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Middle_gray">Middle gray</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Stroboscope">stroboscope</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://pixelsandwanderlust.com/what-is-middle-grey-understanding-18-grey-reflectance/">What is Middle Grey: Understanding 18% Grey Reflectance</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=0RbudPe7pp8">What is this thing called Middle Gray</a></p></li>
+<li><p><a target="_blank" rel="noopener" href="https://www.canon.com.au/explore/glossary/x-sync#:~:text=X%2DSync%20is%20a%20photography,%2F200%20or%201%2F250.">What is X-Sync</a></p></li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="郑"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>郑鹤</div>
+      <div>2021-03-20</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/opencourse-notes/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/opencourse-notes/js/book.js"></script>
