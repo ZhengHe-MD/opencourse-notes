@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/opencourse-notes/favicon.png" />
+    
+
+    <title>
+        
+          Lecture 5 Optics - 公开课笔记
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/opencourse-notes/css/book.css">
+
+    
+<script src="/opencourse-notes/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-172943223-3', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/opencourse-notes/">
+    <img src="/opencourse-notes/favicon.png">
+    <span>公开课笔记</span>
+  </a>
+</div>
+    <div id="menu" class="book-menu hide">
+  <h1 id="算法与数据结构">算法与数据结构</h1>
+<h2 id="mit-6.006">MIT 6.006</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I">Lecture 8: Hashing I</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II">Lecture 9: Hashing II</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III">Lecture 10: Hashing III</a></li>
+</ul>
+<h2 id="mit-6.046j">MIT 6.046J</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing">Lecture 8: Hashing</a></li>
+</ul>
+<h2 id="cs-229r">CS 229r</h2>
+<ul>
+<li><a href="/opencourse-notes/CS-229r/Lecture-1">Lecture 1</a></li>
+<li><a href="/opencourse-notes/CS-229r/Lecture-2">Lecture 2</a></li>
+</ul>
+<h1 id="数据库">数据库</h1>
+<h1 id="摄影">摄影</h1>
+<h2 id="dgmd-e-10">DGMD E-10</h2>
+<ul>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure">Lecture 3: Exposure</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued">Lecture 4: Exposure (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics">Lecture 5: Optics</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
+</ul>
+
+</div>
+
+
+<script src="/opencourse-notes/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <h2 id="lecture-5-optics">Lecture 5: Optics</h2>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/ENJ-2E3FFEg" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="lens">1. Lens</h2>
+<h3 id="over-simplified-diagrams">1.1 Over-simplified Diagrams</h3>
+<p>在之前的课程中介绍 F-number 时，曾经使用过单镜片模型来描述相机镜头 (lens) 结构，如下图所示：</p>
+<p><img src="./single-lens.png" width="680px" /></p>
+<p>显然，这是一个过渡简化的模型，体现在两个地方：</p>
+<ol type="1">
+<li>不是单镜片，而是一组镜片形成的光学系统，因此焦距也不是镜片到传感器的距离</li>
+<li>D 不是镜片的直径，而是内部光圈的直径</li>
+</ol>
+<p>有的镜头焦距固定，被称为定焦镜头；有的镜头焦距可变，被称为变焦镜头。通常变焦镜头的工艺要比定焦镜头更加复杂，在每一个焦距上要获得更好的成像质量难度也更大，因此这里存在价格与灵活度的权衡。下图是一个 400mm 定焦镜头的剖面图：</p>
+<p><img src="./400mm-profile.png" width="680px" /></p>
+<p>可以看出整个镜头由多个镜片构成，各个镜片的形状、大小不同。</p>
+<h3 id="three-classes">1.2 Three Classes</h3>
+<p>针对全画幅 (35mm 胶片/传感器) 相机，按焦距范围，可以大致将镜头分成三类：</p>
+<ul>
+<li>(超) 广角镜头 (wide-angle lens)：&lt; 35mm</li>
+<li>普通镜头 (normal lens): 35mm - 85mm，其中 50mm 镜头捕捉的画面最接近人眼感受</li>
+<li>长焦镜头 (telephoto lens): &gt; 85mm</li>
+</ul>
+<p>用三种焦段的镜头拍摄出的透视效果各不相同，举例如下：</p>
+<p><img src="./3-classes.png" width="680px" /></p>
+<p>上图中，左图使用普通焦距镜头 (80mm) 拍摄；右上图使用长焦镜头 (800mm) 拍摄；右下图使用广角镜头 (14mm) 拍摄。</p>
+<p>焦距越大，视角越小，画面中物体的纵深距离被压缩的程度越高，画面约扁平，相机的抖动越容易对成像结果造成影响；</p>
+<p><img src="./telephoto.png" width="680px" /></p>
+<p>焦距越小，视角约广，画面周围的内容越多，越容易在照片的四个角上发生扭曲。用长焦拍摄，就像将一张照片的中心部分光学 (optically) 放大，用同样数量的像素填充画面的中心部分。</p>
+<p><img src="./wide-angle.png" width="680px" /></p>
+<h3 id="focal-length-perspective">1.3 Focal Length &amp; Perspective</h3>
+<p>要让主体在照片中占据的比例变大有两种方法：增加焦距、靠近主体。二者的区别在于，前者不改变透视 (perspective)，后者会改变透视：</p>
+<p><img src="./perspective.png" width="680px" /></p>
+<p>从上图中可以看出，「80mm」与「Crop」的结果类似，透视不变；而「33mm &amp; moved」与「Crop」的结果不同，从图像底部的瓷砖上可以看出透视的变化。</p>
+<p>在电影拍摄中，通过改变焦距扩大和缩小主体与近景、远景之间距离，同时移动摄像机使主体在画面中的大小保持不变的手法，被称为 Vertigo Effect 或 Dolly Zoom：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/u5JBlwlnJX0" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>上述特性存在于市面上的所有镜头中，从超广角镜头到超长焦镜头。各个厂商都会在镜头正面或侧面标记焦段和相应的最大 F-number 值：</p>
+<p><img src="./focal-length-and-f-number-data.png" width="680px" /></p>
+<p>值得注意的是，取决于镜头制造的工艺和投入：</p>
+<ul>
+<li>改变焦距时，外部镜身不一定需要伸缩</li>
+<li>最大 F-number 值不一定随着焦距变化而变化</li>
+</ul>
+<h3 id="tripod-collar">1.4 Tripod Collar</h3>
+<p>1.1 节中的 400mm 镜头剖面图中可以看到，在镜头下方有一个小支架 (tripod collar)。当镜头的重量超过相机机身的重量时，把相机镜头固定在三脚架上无法保持机身与镜头在三脚架上的平衡，这个小支架存在的意义就是让机身与镜头在三脚架上保持平衡。</p>
+<h2 id="background-blur">2. Background Blur</h2>
+<h3 id="circle-of-confusion">2.1 Circle of Confusion</h3>
+<p>细节可通过下面的视频了解：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/Pdq65lEYFOM" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>如果把所有光源都看作是点光源，不同距离的物体到达的距离不同，折射的角度不同，投射在底片或感光元件上的点 (圆圈) 大小不同。当后者取得极小时，为完美对焦；当后者较大时，则称为失焦。人眼对对焦的准确度有一定的容忍度，只要失焦程度在一定的范围内，主体看起来仍然是清晰的，我们称这个范围为景深 (DOF, depth of field/focus)，而弥散圆 (CoC, circle of confusion) 就是看起来恰好清晰的投射圆大小：</p>
+<p><img src="./coc.png" width="680px" /></p>
+<p>F-number 影响光圈大小，从而影响 DOF 的大小，如下图所示：</p>
+<p><img src="./impact-of-aperture.png" width="680px" /></p>
+<h3 id="bokeh">2.2 Bokeh</h3>
+<p>当彩色的灯光，如夜晚闹市中的灯光，从不同距离投射进相机，在景深外就会形成原型的光斑，这种光斑被称为 bokeh，举例如下：</p>
+<p><img src="./bokeh.jpg" width="680px" /></p>
+<p>在关注 bokeh 的时候，我们更加关注 bokeh 的质量，而不是数量。在照片中部的 bokeh 通常质量最好，形状较圆且亮度均匀；离中心越远，则越容易观察到形状扭曲，圆圈内部的光不均匀，质量越好的镜头在照片四周的成像质量越好。</p>
+<p><img src="./bokeh-shape.png" width="680px" /></p>
+<p>bokeh 的形状实际上就是光圈的形状，比如，从上边左图底部的 bokeh 中可以看到光圈呈七边形；从上边右下图可以看到，光圈呈现甜甜圈的形状，这是用镜片组反射用小镜身支持大焦距导致的。一些摄影师也会通过将钻了不同形状的孔的卡片放置在镜头前面来改变 bokeh 的形状，如在婚礼摄影中常用的心形 bokeh。bokeh 的质量即失焦点光源的成像质量，在一定程度上反映了相机景深范围内物体的成像质量，进而反映镜头整体成像质量。</p>
+<h2 id="hyperfocal-distance">3. Hyperfocal Distance</h2>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/5UejnFcCgZg" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>在拍摄照片的过程中，如果你希望得到最大的景深范围，就需要借助超焦距 (hyperfocal distance)。只要相机对焦在超焦距处的景物，假设为 10m，那么从超焦距一半处 (5m) 到无限远 (+∞) 的景物在人眼中都是清晰的 (acceptable sharp)。它的计算公式如下：</p>
+<p><img src="./hyperfocal-distance.png" width="680px" /></p>
+<p>可以看出它的值与焦距、F-number 以及相机感光元件 (机型) 有关，一些网站和 Apps (如 PhotoPhills) 提供了相关参照表表方便摄影师使用。通常在使用广角镜头拍摄风景图时，会使用超焦距拍摄手法获取最大的景深；而使用长焦镜头拍摄时，由于超焦距已经在几十米之外，使用它获取更大景深的意义并不大。</p>
+<p>实践中，摄影师常常将超焦距的规则反过来用：假设希望对焦的最近的物体距离 X 米，则将对焦点选择在 2X 米处的景物上，从而使得从 X 米到无限远处的景物都在景深范围内。</p>
+<h2 id="image-stabilization">4. Image Stabilization</h2>
+<p><img src="./image-stabilization.png" width="680px" /></p>
+<p>现代相机或多或少都提供了防抖功能。防抖功能的实现有两种思路：镜头防抖和机身防抖。镜头防抖就是在镜头内部抵消抖动；机身防抖就是在机身内部抵消抖动。现代的防抖技术通常能在 "1/focal length" 的经验法则基础上，降低 3-4 个 stops，甚至 4-5 个 stops。(具体数值是老师说的，我并未做相关调研)</p>
+<h2 id="tilt-shift-lenses">5. Tilt-shift Lenses</h2>
+<p>还有一类镜头是移轴镜头 (tilt-shift lenses)，它能够支持摄影师调节镜片组与感光元件之间的夹角 (调节之前二者通常相互平行)。</p>
+<p><img src="./tilt-shift-lenses.png" height="480px" /></p>
+<p>移轴镜头常被用于建筑摄影 (architecture)、风光摄影 (landscape) 以及微缩摄影 (miniaturization)，用于改变对焦平面 (focal plane)。如下图中的建筑：</p>
+<p><img src="./tilt-architecture-1.png" height="480px" /></p>
+<p>由于建筑上不同高度物体与相机的距离不同，就会形成这样的透视效果。加入我们想反映真实的建筑形状，则需要改变焦平面与建筑间的夹角，要么使用移轴镜头，要么只能牺牲构图将相机倾斜。</p>
+<p><img src="./tilt-architecture-2.png" height="480px" /></p>
+<p>微距摄影举例如下：</p>
+<p><img src="./miniaturization.png" width="680px" /></p>
+<h2 id="filters">6. Filters</h2>
+<p>相机镜头表面通常有一个滤镜大小标识，如：</p>
+<p><img src="./lens-surface.png" height="480px" /></p>
+<p>其底部的 「67mm」就是滤镜的大小标识，采买滤镜时一定要与之匹配。常见的滤镜包括 ND (Neutral Density)、GND (Graduated Neutral Density)、偏振 (Polarizer) 镜，如下图所示：</p>
+<p><img src="./filters.png" width="680px" /></p>
+<p>ND 滤镜常常用来均匀地降低整个画面的进光量，从而得到更长的曝光时间，捕捉风景中的运动；GND 则是在画面中的不同区域不同程度地减光，从而降低画面中的光比；偏振镜则可以使画面更鲜艳，同时消除一些反光，如：</p>
+<p><img src="./polarizer.png" width="680px" /></p>
+<h2 id="references">References</h2>
+<ul>
+<li>Lecture 5, <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/5.pdf">slides</a></li>
+<li>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Telephoto_lens">Telephoto lens</a>、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Wide-angle_lens">Wide-angle lens</a>、<a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Circle_of_confusion">circle of confusion</a></li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="郑"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>郑鹤</div>
+      <div>2021-03-27</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/opencourse-notes/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/opencourse-notes/js/book.js"></script>
