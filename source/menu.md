@@ -23,4 +23,5 @@
 * [Lecture 3: Exposure](/opencourse-notes/DGMD-E-10/Lecture-3-Exposure)
 * [Lecture 4: Exposure (continued)](/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued)
 * [Lecture 5: Optics](/opencourse-notes/DGMD-E-10/Lecture-5-Optics)
+* [Lecture 6: Histogram](/opencourse-notes/DGMD-E-10/Lecture-6-Histogram)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
