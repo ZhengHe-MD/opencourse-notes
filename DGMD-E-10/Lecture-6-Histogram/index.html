@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/opencourse-notes/favicon.png" />
+    
+
+    <title>
+        
+          Lecture-6-Histogram - 公开课笔记
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/opencourse-notes/css/book.css">
+
+    
+<script src="/opencourse-notes/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-172943223-3', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/opencourse-notes/">
+    <img src="/opencourse-notes/favicon.png">
+    <span>公开课笔记</span>
+  </a>
+</div>
+    <div id="menu" class="book-menu hide">
+  <h1 id="算法与数据结构">算法与数据结构</h1>
+<h2 id="mit-6.006">MIT 6.006</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I">Lecture 8: Hashing I</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II">Lecture 9: Hashing II</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III">Lecture 10: Hashing III</a></li>
+</ul>
+<h2 id="mit-6.046j">MIT 6.046J</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing">Lecture 8: Hashing</a></li>
+</ul>
+<h2 id="cs-229r">CS 229r</h2>
+<ul>
+<li><a href="/opencourse-notes/CS-229r/Lecture-1">Lecture 1</a></li>
+<li><a href="/opencourse-notes/CS-229r/Lecture-2">Lecture 2</a></li>
+</ul>
+<h1 id="数据库">数据库</h1>
+<h1 id="摄影">摄影</h1>
+<h2 id="dgmd-e-10">DGMD E-10</h2>
+<ul>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure">Lecture 3: Exposure</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued">Lecture 4: Exposure (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics">Lecture 5: Optics</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram">Lecture 6: Histogram</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
+</ul>
+
+</div>
+
+
+<script src="/opencourse-notes/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/Ljj6y1KpVgc" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="直方图">1. 直方图</h2>
+<p>直方图常常用来统计一个集合中，元素的某个属性分布，如某区域黑莓树的高度分布直方图：</p>
+<p><img src="./histogram-example.png" /></p>
+<p>在 Lecture 1 中我们介绍过，一张数字图像由若干像素构成，每个像素用多个 bits/bytes 表示，具体表示形式与图片格式有关。那么相应地，通过观察图像中某个属性的分布，我们也可以得到一些对于图像本身的理解。一个最简单的例子就是 luminosity histogram。</p>
+<h2 id="luminosity-histogram">2. luminosity histogram</h2>
+<p><img src="./luminosity-histogram.png" /></p>
+<p>luminosity histogram 的横坐标表示亮度，最左边是相机能捕捉到的最黑的颜色，值为 0；最右边是相机能捕捉到的最白的颜色，通常值为 255。纵坐标表示同一灰度值的像素个数。整个直方图的高通常固定，因此直方图上矩形的相对高度表示的是不同灰度值上像素个数的相对关系。</p>
+<p>一张全黑的图，在它上面只有值为 0 的像素，因此它的直方图在坐标轴最左边有一个尖峰 (spike)，其它地方都为空：</p>
+<p><img src="./luminosity-black.png" /></p>
+<p>一张全白的图，在它上面只有值为 255 的像素，因此它的直方图在坐标轴最右边有一个尖峰 (spike)，其它地方都为空：</p>
+<p><img src="./luminosity-white.png" /></p>
+<h3 id="合理曝光">2.1 合理曝光</h3>
+<p>那么，一张合理曝光的照片，它的 luminosity histogram 应该长什么样呢？也许你会认为，如果一张照片的整个直方图都能均匀地分布在可衡量的灰度范围内，且在 0 和 255 灰度处没有像素或仅有极少量像素，就是合理曝光，如下图所示：</p>
+<p><img src="./luminosity-exposure-sample-1.png" /></p>
+<p>图中的海水和沙滩都既不太黑，也不太白，细节清晰，无论从直方图分析，还是直接关上这张照片，都很难找到其曝光的不合理之处。再看下面这张雪山风景图：</p>
+<p><img src="./luminosity-exposure-sample-2.png" /></p>
+<p>这张图的底部是一片草甸，整体偏暗，甚至有全黑的部分，但它并不是画面中的主体，观众不会花过多的注意力在上面；画面中间靠右是雪山顶部，十分明亮，接近全白，除此之外，雪山体的其它部分、天空中的云朵，展现不同程度的白，细节、纹理还比较清晰，总体来说，因为照片主体本身的特点使得它比较高调 (high tone)，但这并不代表它的曝光有问题。从其 luminosity histogram 中可以看到，它并没有真正过曝的像素，既它的白色区域没有丢失任何细节；它有较多低曝 (underexposed) 像素，但这些像素在画面中的重要性较低，且没有明显地聚成块，因此不影响画面的总体呈现。</p>
+<p><img src="./luminosity-exposure-sample-3.png" /></p>
+<p>这张图与前两张图的不同在于它的高光比，画面中既存在全黑的区域 (左下角的岩石) 也存在全白的区域 (左上角的云层或右下角的水流)，但整体画面的细节 (人物、岩石、森林) 清晰，同样是一张好照片。</p>
+<p><img src="./luminosity-exposure-sample-4.png" /></p>
+<p>尽管上图绝大多数区域是白色，甚至从直方图上能看出画面中存在全白的区域，但仔细看云层的纹理、细节并没有消失，且右上方厚厚的云层与左下方的草甸岩石形成对比，突出山脊处风景的壮观，依然是一张好照片。</p>
+<p>有时候再一些商业照片的拍摄中，会刻意将背景过曝或低曝，保证主体的合理曝光，如下图所示：</p>
+<p><img src="./luminosity-exposure-sample-5.png" /></p>
+<p>它们的 luminosity histogram 则呈现一边倒的形式。</p>
+<p>小结：<strong>事实上并不存在固定的 luminosity histogram 模式 (pattern) 能保证照片的合理曝光</strong>。照片中的景物可能本身就是低色调 (low key) 或高色调 (high key)，只要能达到摄影师想表达的目的，画面看起来令人舒适，就可以称之为合理的曝光。</p>
+<p>有时候，相机的电子屏幕并不能准确地告诉我们照片的细节是否已经丢失，我们可以使用 luminosity histogram 来判断；另外如果我们对照片本身的 luminosity histogram 整体模式有所预期，可以在拍完照片后用它做一次验证。</p>
+<h3 id="颜色与灰度">2.2 颜色与灰度</h3>
+<p>在 Lecture 1 中，我们了解到每个像素是由 3 种颜色组成，即 RGB，那么如何将每个像素的 RGB 转化成灰度？</p>
+<p><img src="./luminosity-color.png" /></p>
+<p>在 Lecture 2 中，我们介绍过人眼中的视锥细胞 (cones) 负责感受颜色，其中负责接收中长波长的视锥细胞能占总数的 90%，而负责接收短波长的视锥细胞则约为 10%。回顾下图：</p>
+<p><img src="./perception-of-luminance-the-eye.png" /></p>
+<p>短、中、长波长的视锥细胞分别对应着蓝、绿、红光，因此绿光和红光对亮度的贡献较大，蓝光的贡献较小。</p>
+<blockquote>
+<p>Note: 在英文中，luminance 指代实际光的亮度，luminosity 指代人眼感受到光的亮度</p>
+</blockquote>
+<p>根据人类整体肉眼的平均视锥细胞分布，我们可以获得如下 luminosity 估算公式：</p>
+<p><img src="./luminosity-computation.png" /></p>
+<p>同样强度的红、绿、蓝分别能为对应的 luminosity 贡献 30%、59%、11%，可以用下图直观地对比三者：</p>
+<p><img src="./luminosity-rgb-contribution.png" /></p>
+<p>有了上述公式，我们就能在心中推算一张全红 (R=255, G=0, B=0) 图片的 luminosity histogram：</p>
+<p><img src="./luminosity-red.png" /></p>
+<p>甚至能心算更复杂的图片的直方图：</p>
+<p><img src="./luminosity-complex.png" /></p>
+<h2 id="other-histograms">3. Other Histograms</h2>
+<p>除了 luminosity histogram，我们还可以统计图片的其它属性分布，如 RGB 对应的三个 channels：</p>
+<p><img src="./white-red-gradient.png" /></p>
+<p>实践中更常用的是 colors histogram 和 RGB histogram：</p>
+<p><img src="./white-red-gradient-2.png" /></p>
+<p>其中 colors histogram 是将三个 channels 的直方图重叠到一起；RGB histogram 是将三个 channels 的直方图叠加在一起。举例如下：</p>
+<p><img src="./other-histograms-example-1.png" /></p>
+<p><img src="./other-histograms-example-2.png" /></p>
+<h2 id="dynamic-range">4. Dynamic Range</h2>
+<p>在摄影中，dynamic range 指的是图像中最亮的色调与最暗的色调之差，通常讨论的更多的是相机的 maximum dynamic range，是相机本身性能的参数之一，它的简化公式如下：</p>
+<p><img src="./dynamic-range-calculation.png" /></p>
+<p>通常 dynamic range 使用 stop 数量来衡量。人眼可以感受的 dynamic range 约为 20 stops，这意味着人眼能感受到的「最暗的光」比其能感受到的「最亮的光」暗 100 万倍。这也是为什么人眼能在大白天，强光下，看到阴影中的细节。高端数码相机的 dynamic range 约为 14 stops，这意味着相机能感受到的「最暗的光」比其能感受到的「最亮的光」暗 1.6 万倍，相比人眼逊色很多。这也是为什么有时候我们在大光比场景下拍摄时，明明人眼都能看清细节，相机拍出来的照片确差强人意。</p>
+<h2 id="references">References</h2>
+<ul>
+<li>Lecture 6: Histogram, <a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/6.pdf">slides</a></li>
+<li>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Histogram">Histogram</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Image_histogram">Image Histogram</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.howtogeek.com/321311/what-is-dynamic-range-in-photography">What is Dynamic Range in Photography</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cambridgeincolour.com/tutorials/cameras-vs-human-eye.htm">Cameras vs. The Human Eye</a></li>
+<li><a target="_blank" rel="noopener" href="https://photographylife.com/maximizing-dynamic-range">Maximizing Dynamic Range</a></li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="郑"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>郑鹤</div>
+      <div>2021-04-03</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/opencourse-notes/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/opencourse-notes/js/book.js"></script>
