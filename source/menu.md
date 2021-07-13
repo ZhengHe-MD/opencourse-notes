@@ -24,4 +24,5 @@
 * [Lecture 4: Exposure (continued)](/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued)
 * [Lecture 5: Optics](/opencourse-notes/DGMD-E-10/Lecture-5-Optics)
 * [Lecture 6: Histogram](/opencourse-notes/DGMD-E-10/Lecture-6-Histogram)
+* [Lecture 7: Software Tools](/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
