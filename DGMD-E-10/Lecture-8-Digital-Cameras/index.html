@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/opencourse-notes/favicon.png" />
+    
+
+    <title>
+        
+          Lecture-8-Digital-Cameras - 公开课笔记
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/opencourse-notes/css/book.css">
+
+    
+<script src="/opencourse-notes/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-172943223-3', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/opencourse-notes/">
+    <img src="/opencourse-notes/favicon.png">
+    <span>公开课笔记</span>
+  </a>
+</div>
+    <div id="menu" class="book-menu hide">
+  <h1 id="算法与数据结构">算法与数据结构</h1>
+<h2 id="mit-6.006">MIT 6.006</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I">Lecture 8: Hashing I</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II">Lecture 9: Hashing II</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III">Lecture 10: Hashing III</a></li>
+</ul>
+<h2 id="mit-6.046j">MIT 6.046J</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing">Lecture 8: Hashing</a></li>
+</ul>
+<h2 id="cs-229r">CS 229r</h2>
+<ul>
+<li><a href="/opencourse-notes/CS-229r/Lecture-1">Lecture 1</a></li>
+<li><a href="/opencourse-notes/CS-229r/Lecture-2">Lecture 2</a></li>
+</ul>
+<h1 id="数据库">数据库</h1>
+<h1 id="摄影">摄影</h1>
+<h2 id="dgmd-e-10">DGMD E-10</h2>
+<ul>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure">Lecture 3: Exposure</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued">Lecture 4: Exposure (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics">Lecture 5: Optics</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram">Lecture 6: Histogram</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools">Lecture 7: Software Tools</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras">Lecture 8: Digital Cameras</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
+</ul>
+
+</div>
+
+
+<script src="/opencourse-notes/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/mxLWyIggr8Q" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="dynamic-range">1. Dynamic range</h2>
+<p>在 lecture 6 中，我们介绍过 <a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram/#dynamic-range">dynamic range</a>，即相机感光元件能感受到的最大光量和最小可感知光量的比例。</p>
+<p><img src="./bucket-metaphor.png" /></p>
+<p>感光元件中的每个像素就像一个水桶，射进来的光就像流入水桶的水，水桶的体积与水桶体积的刻度单位之比就是 dynamic range。</p>
+<p>在实际拍照过程中，常常会出现画面内部的 dynamic range 超出相机的能力边界，如下图所示：</p>
+<p><img src="./dynamic-range-in-scenes.png" /></p>
+<p>从右上角的分布图中可以看出，在黑、白边界上还有许多像素分布。</p>
+<h2 id="sensor-sizes">2. Sensor sizes</h2>
+<p>在 lecture 1 中，我们介绍过<a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome/#image-sensor-format-画幅">常见的传感器大小</a>，即画幅，这里回顾一下这张图：</p>
+<p><img src="./sensor-sizes.png" /></p>
+<p>其中整个白色区域是中画幅 (medium format)，它远远大于消费级相机配备的传感器规格，实际上并不存在标准的中画幅规格；仅次于中画幅的是全画幅 (35 mm "full frame") 传感器，是中高端消费级相机设备的标准配置，适用于所有厂商，所有的消费级镜头上的参数通常也是以全画幅设备为参照；在中低端消费级相机中会存在更小的画幅，各个厂商都有自己的规格，如 Canon 的 APS-H、APS-C 等等。画幅较小的机身较便携，成本也较低，更适合中低端消费者。</p>
+<p>接下来我们将重点讨论不同画幅的传感器给机身性能带来的影响。</p>
+<h3 id="different-sensor-sizes-different-pixel-sizes">2.1 Different sensor sizes, different pixel sizes</h3>
+<p>给定两个像素总量相同，尺寸不同的传感器，如下图所示：</p>
+<p><img src="./different-sensor-size-and-pixel-size.png" /></p>
+<p>假设像素总量为 <code>6000,000</code>，两个传感器的对比如下：</p>
+<table>
+<thead>
+<tr class="header">
+<th>传感器</th>
+<th>长</th>
+<th>宽</th>
+<th>像素边长</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1/2.5"</td>
+<td>7mm (≈2900 px)</td>
+<td>5mm (≈2070 px)</td>
+<td>≈2.4 μm</td>
+</tr>
+<tr class="even">
+<td>APS-C</td>
+<td>24mm (3000 px)</td>
+<td>16mm (2000 px)</td>
+<td>=8 μm</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>💡 让我们先记住这个结论：像素总量相同的传感器，尺寸越大，像素边长越大</p>
+</blockquote>
+<p>如果简单地将 1/2.5" 传感器的像素边长近似为 2 μm，APS-C 的像素面积是 1/2.5" 的 16 倍，因此相同的光进入传感器后，后者的曝光量比前者多 4 stops。</p>
+<h3 id="focal-length-and-perspective">2.2 Focal length and perspective</h3>
+<p>将相同的镜头安装到配备上述不同尺寸传感器的机身上，其效果相当于增加焦距。在 <a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics/#focal-length-perspective">lecture 5</a> 中曾经介绍过，在不同的焦距下想保持主体的大小不变，需要改变视角：</p>
+<p><img src="./focal-length-perspective.png" /></p>
+<p>而对于同一个场景，保持拍摄角度、与主体的距离不变，增加焦距相当于在场景中裁剪出更小的一部分，但只要两个机身的像素总量相等，这种变焦不会失真：</p>
+<p><img src="./focal-length-perspective-2.png" /></p>
+<p><img src="./focal-length-perspective-3.png" /></p>
+<p>摄影爱好者会使用 crop factor 或 focal length multiplier 来快速计算等效焦距。一般镜头上描述的焦距针对的是全画幅机身，所以全画幅机身的 crop factor 为 1；而对于一个 crop factor 为 1.6 的机身，装上 50mm 的镜头的实际等效焦距为 80mm。对于长焦镜头，利用较小画幅的机身可以自动获得更长的焦距；但对于广角镜头，使用较小画幅的机身将使得广角镜头的焦距失去预期的效果。</p>
+<p><img src="./wide-angle-lens-example.png" /></p>
+<h3 id="depth-of-field">2.3 Depth of field</h3>
+<p>在 lecture 5 的 <a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics/#circle-of-confusion">Circle of Confusion</a> 一节中，我们介绍过景深 (DOF) 与光圈的直径大小相关，光圈的直径约大，景深越小；直径约小，景深越大。那么不同尺寸的传感器对景深会产生怎样的影响？</p>
+<p><img src="./dof.png" /></p>
+<p>上图中共有 3 张曝光程度约等的尺子照片，从上到下我们分别称之为 a, b, c。对比图 b 和 c 可以看出：f-number 取值相等时，传感器越小，机身越小，焦距越小，光圈直径越小，因此景深越大；对比图 a 和 b 可以看出，画幅大的机身可以通过提高 f-number，主动降低光圈直径，从而获得与画幅小的机身相同的景深，即画幅大的机身在景深范围能力上是画幅小的机身的超集。</p>
+<h3 id="pixel-size-and-dynamic-range">2.4 Pixel size and dynamic range</h3>
+<p><img src="./pixel-size-with-dynamic-range.png" /></p>
+<p>沿用前面水桶接水的比喻，像素面积越大，水桶体积越大。如果最小可感知光亮不变，画幅越大意味着相机的 dynamic range 越大。</p>
+<h3 id="iso-and-dynamic-range">2.5 ISO and dynamic range</h3>
+<p><img src="./iso-dynamic-range.png" /></p>
+<p>同样引用水桶接水的比喻，ISO 越高，意味着捕获的光会被放大越多倍，那么只需要越少的水就可以让水桶填满，因此，实际上 dynamic range 会随着 ISO 的增加而降低。</p>
+<h2 id="sensor-types">3. Sensor types</h2>
+<h3 id="active-vs.-passive-pixel-sensors">3.1 Active vs. Passive pixel sensors</h3>
+<p>通常感光元件有两种形式：active pixel sensors 和 passive pixel sensors。二者各有千秋，其各自的代表作是 Complementary Metal Oxide Semiconductor (CMOS) 和 Charge-coupled device (CCD)。相对来说，CMOS 造价更低，消耗更小的能量，但信噪比较高，目前更加流行。二者主要的区别在于曝光放大 (根据 ISO) 的实现地点，CMOS 会在每个像素上放大，而 CCD 使用的是全局放大。</p>
+<h3 id="microlens-and-pixel-layers">3.2 Microlens and pixel layers</h3>
+<p>下图是 CMOS 感光元件的电路结构示意图：</p>
+<p><img src="./active-pixel-sensor.png" /></p>
+<p>忽略各种细节，其实老师想通过这张图说明，实际上每个像素中负责接收光信号的部分面积很小，剩余部分都是一些电路元器件。如果我们什么都不做，实际上无法利用好进入到像素区域中的光。</p>
+<p>真正让 CMOS 大放异彩的是一种叫 microlens 的装置，即在感光元件上方加一个凸透镜，将进入到像素区域的光聚焦到实际的电路感光区域，如下图所示：</p>
+<p><img src="./microlens.png" /></p>
+<h3 id="color-filter-arrays">3.3 Color filter arrays</h3>
+<p>上面提到的感光电路本身只能处理光的强度信号，无法区分其中的红绿蓝各通道的强度。一种做法是在上节提到的凸透镜下方再加一层滤光层：</p>
+<p><img src="./filter-arrays.png" /></p>
+<p>显然，我们不可能在每个像素上装上所有通道的滤光层，它们互相之间会相互遮挡，导致最终没有光线落入传感器。实践中的做法是每个像素只装有一个通道的滤光层，通过相邻像素的数据来补充所有通道的数据。</p>
+<h2 id="references">References</h2>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/8.pdf">slides</a></p></li>
+<li><p>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Dynamic_range">dynamic range</a></p></li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="郑"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>郑鹤</div>
+      <div>2021-07-14</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/opencourse-notes/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/opencourse-notes/js/book.js"></script>
