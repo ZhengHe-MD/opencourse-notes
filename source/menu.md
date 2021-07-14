@@ -25,4 +25,5 @@
 * [Lecture 5: Optics](/opencourse-notes/DGMD-E-10/Lecture-5-Optics)
 * [Lecture 6: Histogram](/opencourse-notes/DGMD-E-10/Lecture-6-Histogram)
 * [Lecture 7: Software Tools](/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools)
+* [Lecture 8: Digital Cameras](/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
