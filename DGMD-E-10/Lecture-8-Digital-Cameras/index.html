@@ -98,6 +98,7 @@ document.addEventListener('DOMContentLoaded', function () {
 <li><a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram">Lecture 6: Histogram</a></li>
 <li><a href="/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools">Lecture 7: Software Tools</a></li>
 <li><a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras">Lecture 8: Digital Cameras</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-9-Digital-Cameras-Continued">Lecture 9: Digital Cameras (continued)</a></li>
 <li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
 </ul>
 
@@ -229,7 +230,7 @@ function sidebar_toggle() {
 <p>忽略各种细节，其实老师想通过这张图说明，实际上每个像素中负责接收光信号的部分面积很小，剩余部分都是一些电路元器件。如果我们什么都不做，实际上无法利用好进入到像素区域中的光。</p>
 <p>真正让 CMOS 大放异彩的是一种叫 microlens 的装置，即在感光元件上方加一个凸透镜，将进入到像素区域的光聚焦到实际的电路感光区域，如下图所示：</p>
 <p><img src="./microlens.png" /></p>
-<h3 id="color-filter-arrays">3.3 Color filter arrays</h3>
+<h3 id="color-filter">3.3 Color filter</h3>
 <p>上面提到的感光电路本身只能处理光的强度信号，无法区分其中的红绿蓝各通道的强度。一种做法是在上节提到的凸透镜下方再加一层滤光层：</p>
 <p><img src="./filter-arrays.png" /></p>
 <p>显然，我们不可能在每个像素上装上所有通道的滤光层，它们互相之间会相互遮挡，导致最终没有光线落入传感器。实践中的做法是每个像素只装有一个通道的滤光层，通过相邻像素的数据来补充所有通道的数据。</p>

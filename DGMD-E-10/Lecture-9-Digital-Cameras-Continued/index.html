@@ -11,7 +11,7 @@
 
     <title>
         
-          公开课笔记
+          Lecture-8-Digital-Cameras-Continued - 公开课笔记
         
     </title>
 
@@ -157,140 +157,112 @@ function sidebar_toggle() {
 
         </div>
         <div class="book-content">
-          <div class='book-archive'>
-  <!-- Title -->
-  
-    <h1>Archives</h1>
-  
+          <div class="book-post">
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/TUgNK2kbVOs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>在回顾完上节课的核心内容后，老师播放了一段 CCD 芯片制作过程的视频：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/bqJksXwrx7U" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>整个工艺过程与电脑芯片的生产十分类似，详细内容可以观看视频。一个很重要的 insight是：一星半点的电路错误就会让整个 CCD 芯片报废，因此芯片越大，电路元件越多，出现缺陷的概率越大，良品率越低，因此对工艺要求更高，价格也就更贵。</p>
+<h2 id="color-filter-arrays">1. Color filter arrays</h2>
+<p>在 Lecture 8 中的 <a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras/#color-filter-arrays">Color Filter</a> 一节中，我们介绍过每个像素上只能有一种颜色的 filter，那各种颜色在一个芯片上如何分布呢？这就是所谓的 color filter arrays，举例如下：</p>
+<p><img src="./color-filter-arrays.png" /></p>
+<p>现在每个像素只能记录一种颜色的强度，如何能通过它来得到我们常见的 RGB 像素？业界的标准解决方案叫「Demosaicing」，就是在交界处将周围的单色像素合并成单个 RGB 像素，前者被称为原始像素 (raw pixels)，后者被称为有效像素 (effective pixels)。</p>
+<p><img src="./demosaicing.png" /></p>
+<p>上图中，色块对应原始像素，数字对应有效像素。在一个芯片上，有效像素与原始像素的数量差异就在四个边长上。在以前像素比较少的时候，相机芯片会标明二者的数量，现在已经不再标注。</p>
+<p>还有一个很重要的细节在于「如何通过周围的原始像素合成有效像素」，因为图片中的物体和景观千变万化，很难找到一个「one-thing-fits-all」的解决方案，尤其是在颜色变化剧烈 (高频) 的部分，算法容易出现抖动。为了降低这种影响，芯片制造商通常会在像素的 microlens 之上再增加「low-pass filter」，在上面过滤高频信号，减少算法面临的挑战。</p>
+<p><img src="./low-pass-filter.png" /></p>
+<p>上图从左到右分别是：</p>
+<ul>
+<li>原始图片</li>
+<li>合成算法</li>
+<li>low-pass filter + 合成算法</li>
+</ul>
+<p>可以看到放任「合成算法」的结果就是图中会出现很多意料之外的噪点；而增加「low-pass filter」可以大大减少噪点数量，但牺牲了图片的锐度。</p>
+<h3 id="foveon-x3">2. Foveon X3</h3>
+<p>除了 CCD 之外，还有一种芯片叫 Foveon X3，与 color filter arrays 技术不同，Foveon X3 会利用「不同波长的光在硅中的吸收程度不同」的原理，在一个像素上同时捕捉 RGB 三种信号：</p>
+<p><img src="./foveon-x3.png" /></p>
+<p>这种技术的难点在于在连续的光谱中界定 RGB 的范围，但它带来的好处十分明显：无需 low-pass filter 和像素合成算法，同时在高频信号的处理上表现得更加优雅：</p>
+<p><img src="./sensors-comparison.png" /></p>
+<p>图中 5D 代表 CCD，SD 14 代表 Foveon X3。</p>
+<h2 id="contrast-and-dynamic-range">3. Contrast and dynamic range</h2>
+<p>在前面课程中提到的 dynamic range 指的是感光元件的最大 dynamic range，每张图片也拥有自己的 dynamic range。当画面的对比度较低时，dynamic range 较小：</p>
+<p><img src="./dynamic-range-1.png" /></p>
+<p>表现出来就是像素集中在 histogram 的中间区域。我们可以可以通过增强对比度，提升 dynamic range，使画面颜色看起来更饱满：</p>
+<p><img src="./dynamic-range-2.png" /></p>
+<p>但我们也不能一味地增加对比度，过度拉伸 histogram 可能会导致出现颜色断层：</p>
+<p><img src="./dynamic-range-3.png" /></p>
+<p>就像小朋友如果身高长得太快，皮肤上就会出现生长纹。</p>
+<h2 id="analog-to-digital-converter-adc">4. Analog to digital converter (ADC)</h2>
+<p>芯片的作用说白了就是将模拟信号 (光) 转化成数字信号 (电)，如下图所示：</p>
+<p><img src="./adc.png" /></p>
+<p>下图是 12-bit 采样的示例：</p>
+<p><img src="./adc-12-bit.png" /></p>
+<p>尽管采样是线性的，但人眼对光线强度的感受不是。从数字上来说，亮度越高，增加一倍所需增加的绝对值越大，如下图所示：</p>
+<p><img src="./sensor-linearity.png" /></p>
+<p>但由于相机会通过各种测光方案围绕中间灰成像，其结果就是大部分的采样值都在取值范围的前半段，直接使用这些值会使得图像过暗。因此，相机在成像前，会对原始的采样值做一次映射，将两边的取值往中间靠，如下图所示：</p>
+<p><img src="./tone-curve.png" /></p>
+<p>其实这个映射关系就是一种 tone curve。</p>
+<h2 id="raw-vs.-jepg">5. Raw vs. JEPG</h2>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>RAW</th>
+<th>JPEG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bit Depth</td>
+<td>10-, 12-, 14-BIT</td>
+<td>8-BIT</td>
+</tr>
+<tr class="even">
+<td>Tone Curve</td>
+<td>not applied</td>
+<td>applied</td>
+</tr>
+<tr class="odd">
+<td>White Balance</td>
+<td>not set</td>
+<td>set</td>
+</tr>
+<tr class="even">
+<td>Compression</td>
+<td>lossless</td>
+<td>lossy</td>
+</tr>
+<tr class="odd">
+<td>Portability</td>
+<td>nonstandard</td>
+<td>standard</td>
+</tr>
+<tr class="even">
+<td>Post-processing</td>
+<td>required</td>
+<td>optional</td>
+</tr>
+</tbody>
+</table>
+<h2 id="references">References</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/9.pdf">slides</a></li>
+</ul>
 
-  
-    <!-- Split post by year -->
-    
-  
-
-  
-      <div class="years">
-          <h2>2021</h2>
-          <ul class="archive-list-item">
-          
-              <li>
-                <span>2021-07-19</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-9-Digital-Cameras-Continued/">
-                  Lecture-8-Digital-Cameras-Continued
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-07-14</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras/">
-                  Lecture-8-Digital-Cameras
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-07-13</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools/">
-                  Lecture-7-Software-Tools
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-04-03</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram/">
-                  Lecture-6-Histogram
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-03-27</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics/">
-                  Lecture 5 Optics
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-03-20</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued/">
-                  Lecture-4-Exposure-Continued
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-27</span>
-                <a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out/">
-                  Project 1: Keep an I[SO] Out
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-25</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure/">
-                  Lecture 3: Exposure
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-18</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light/">
-                  Lecture 2: Software Tools & Light
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-17</span>
-                <a href="/opencourse-notes/CS-229r/Lecture-2/">
-                  Lecture 2
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-16</span>
-                <a href="/opencourse-notes/CS-229r/Lecture-1/">
-                  Lecture-1
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-14</span>
-                <a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III/">
-                  Lecture 10 Hashing III
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-14</span>
-                <a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome/">
-                  Lecture-1-Welcome
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-14</span>
-                <a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II/">
-                  Lecture-9-Hashing-II
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-02-13</span>
-                <a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I/">
-                  MIT-6.006-Lecture-8-Hashing-I
-                </a>
-              </li>
-          
-              <li>
-                <span>2021-01-31</span>
-                <a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing/">
-                  MIT-6.046J-Lecture-8-Hashing
-                </a>
-              </li>
-          
-          </ul>
-      </div>
-  
-
-  
 </div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
         </div>
       </div>
       <div class="column col-2 hide-lg">
@@ -314,7 +286,7 @@ function sidebar_toggle() {
     <!-- Author title -->
     <div class="author-title">
       <div>郑鹤</div>
-      <div></div>
+      <div>2021-07-19</div>
     </div>
   </div>
 
