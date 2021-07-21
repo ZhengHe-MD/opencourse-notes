@@ -27,4 +27,5 @@
 * [Lecture 7: Software Tools](/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools)
 * [Lecture 8: Digital Cameras](/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras)
 * [Lecture 9: Digital Cameras (continued)](/opencourse-notes/DGMD-E-10/Lecture-9-Digital-Cameras-Continued)
+* [Lecture 10: From Stills to Video](/opencourse-notes/DGMD-E-10/Lecture-10-From-Stills-to-Video)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
