@@ -11,7 +11,7 @@
 
     <title>
         
-          Lecture-8-Digital-Cameras-Continued - 公开课笔记
+          Lecture 10 From Stills to Video - 公开课笔记
         
     </title>
 
@@ -159,94 +159,110 @@ function sidebar_toggle() {
         </div>
         <div class="book-content">
           <div class="book-post">
-  <div class="video-container"><iframe src="https://www.youtube.com/embed/TUgNK2kbVOs" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-<p>在回顾完上节课的核心内容后，老师播放了一段 CCD 芯片制作过程的视频：</p>
-<div class="video-container"><iframe src="https://www.youtube.com/embed/bqJksXwrx7U" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
-<p>整个工艺过程与电脑芯片的生产十分类似，详细内容可以观看视频。一个很重要的 insight是：一星半点的电路错误就会让整个 CCD 芯片报废，因此芯片越大，电路元件越多，出现缺陷的概率越大，良品率越低，因此对工艺要求更高，价格也就更贵。</p>
-<h2 id="color-filter-arrays">1. Color filter arrays</h2>
-<p>在 Lecture 8 中的 <a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras/#color-filter-arrays">Color Filter</a> 一节中，我们介绍过每个像素上只能有一种颜色的 filter，那各种颜色在一个芯片上如何分布呢？这就是所谓的 color filter arrays，举例如下：</p>
-<p><img src="./color-filter-arrays.png" /></p>
-<p>现在每个像素只能记录一种颜色的强度，如何能通过它来得到我们常见的 RGB 像素？业界的标准解决方案叫「Demosaicing」，就是在交界处将周围的单色像素合并成单个 RGB 像素，前者被称为原始像素 (raw pixels)，后者被称为有效像素 (effective pixels)。</p>
-<p><img src="./demosaicing.png" /></p>
-<p>上图中，色块对应原始像素，数字对应有效像素。在一个芯片上，有效像素与原始像素的数量差异就在四个边长上。在以前像素比较少的时候，相机芯片会标明二者的数量，现在已经不再标注。</p>
-<p>还有一个很重要的细节在于「如何通过周围的原始像素合成有效像素」，因为图片中的物体和景观千变万化，很难找到一个「one-thing-fits-all」的解决方案，尤其是在颜色变化剧烈 (高频) 的部分，算法容易出现抖动。为了降低这种影响，芯片制造商通常会在像素的 microlens 之上再增加「low-pass filter」，在上面过滤高频信号，减少算法面临的挑战。</p>
-<p><img src="./low-pass-filter.png" /></p>
-<p>上图从左到右分别是：</p>
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/eRekL3xfTvw" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>这节课由两个 guest lecturers 分别介绍：</p>
 <ul>
-<li>原始图片</li>
-<li>合成算法</li>
-<li>low-pass filter + 合成算法</li>
+<li>视频拍摄</li>
+<li>视频后期</li>
 </ul>
-<p>可以看到放任「合成算法」的结果就是图中会出现很多意料之外的噪点；而增加「low-pass filter」可以大大减少噪点数量，但牺牲了图片的锐度。</p>
-<h3 id="foveon-x3">2. Foveon X3</h3>
-<p>除了 CCD 之外，还有一种芯片叫 Foveon X3，与 color filter arrays 技术不同，Foveon X3 会利用「不同波长的光在硅中的吸收程度不同」的原理，在一个像素上同时捕捉 RGB 三种信号：</p>
-<p><img src="./foveon-x3.png" /></p>
-<p>这种技术的难点在于在连续的光谱中界定 RGB 的范围，但它带来的好处十分明显：无需 low-pass filter 和像素合成算法，同时在高频信号的处理上表现得更加优雅：</p>
-<p><img src="./sensors-comparison.png" /></p>
-<p>图中 5D 代表 CCD，SD 14 代表 Foveon X3。</p>
-<h2 id="contrast-and-dynamic-range">3. Contrast and dynamic range</h2>
-<p>在前面课程中提到的 dynamic range 指的是感光元件的最大 dynamic range，每张图片也拥有自己的 dynamic range。当画面的对比度较低时，dynamic range 较小：</p>
-<p><img src="./dynamic-range-1.png" /></p>
-<p>表现出来就是像素集中在 histogram 的中间区域。我们可以可以通过增强对比度，提升 dynamic range，使画面颜色看起来更饱满：</p>
-<p><img src="./dynamic-range-2.png" /></p>
-<p>但我们也不能一味地增加对比度，过度拉伸 histogram 可能会导致出现颜色断层：</p>
-<p><img src="./dynamic-range-3.png" /></p>
-<p>就像小朋友如果身高长得太快，皮肤上就会出现生长纹。</p>
-<h2 id="analog-to-digital-converter-adc">4. Analog to digital converter (ADC)</h2>
-<p>芯片的作用说白了就是将模拟信号 (光) 转化成数字信号 (电)，如下图所示：</p>
-<p><img src="./adc.png" /></p>
-<p>下图是 12-bit 采样的示例：</p>
-<p><img src="./adc-12-bit.png" /></p>
-<p>尽管采样是线性的，但人眼对光线强度的感受不是。从数字上来说，亮度越高，增加一倍所需增加的绝对值越大，如下图所示：</p>
-<p><img src="./sensor-linearity.png" /></p>
-<p>但由于相机会通过各种测光方案围绕中间灰成像，其结果就是大部分的采样值都在取值范围的前半段，直接使用这些值会使得图像过暗。因此，相机在成像前，会对原始的采样值做一次映射，将两边的取值往中间靠，如下图所示：</p>
-<p><img src="./tone-curve.png" /></p>
-<p>其实这个映射关系就是一种 tone curve。</p>
-<h2 id="raw-vs.-jepg">5. Raw vs. JEPG</h2>
+<h2 id="视频拍摄">视频拍摄</h2>
+<h3 id="iso">ISO</h3>
+<p>拍摄视频时，永远不要开启自动 ISO，否则视频会出现忽然变亮或变暗的情况，给后期带来很大的困扰。</p>
+<h3 id="shutter-speed-vs.-frame-rate">Shutter Speed vs. Frame Rate</h3>
+<p>在拍摄视频时，shutter speed 和 frame rate 常常要合并起来考虑。前者指的是视频中每一帧画面曝光的时间；后者指的是视频中每秒包含的帧量 (的倒数)。快门时间与 frame rate 的组合共同决定视频的观看体验。</p>
+<p>根据电影业的历史实践经验，当每秒由 24 帧画面构成时，人眼会觉得画面是流畅的，更多的帧数不会带来流畅度的提升。另外一个经验法则是所谓的「The 180-degree rule」，即当 frame rate 是 shutter speed 的两倍左右时，画面的观感对人来说是最自然的。当然，实践中，以更高的帧率拍摄除了让每帧画面更加清晰，还可以给视频后期剪辑留下空间。更具体的介绍可以观看下面这个视频：</p>
+<div class="video-container"><iframe src="https://player.vimeo.com/video/348671806" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>既然对于人眼来说 1/24 的 frame rate 已经足够流畅，为什么我们总还能在消费市场上听到 60 frames per second (FPS) 这样的概念？助教举了 2 个例子：</p>
+<ol type="1">
+<li>电子游戏：电子游戏的控制是以 frame 为单位，有些游戏 1/24s 的精读还无法满足玩家的要求</li>
+<li>后期剪辑：为后期剪辑留下后门，比如可以选择任意片段制作慢放效果</li>
+</ol>
+<h3 id="resolution-apsect-ratio">Resolution &amp; Apsect Ratio</h3>
 <table>
 <thead>
 <tr class="header">
-<th></th>
-<th>RAW</th>
-<th>JPEG</th>
+<th>Commonly Called</th>
+<th>W</th>
+<th>H</th>
+<th>Frame Rate</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Bit Depth</td>
-<td>10-, 12-, 14-BIT</td>
-<td>8-BIT</td>
+<td>High Def 1080P</td>
+<td>1920</td>
+<td>1080</td>
+<td>P or I</td>
 </tr>
 <tr class="even">
-<td>Tone Curve</td>
-<td>not applied</td>
-<td>applied</td>
+<td>High Def 720P</td>
+<td>1280</td>
+<td>720</td>
+<td>P or I</td>
 </tr>
 <tr class="odd">
-<td>White Balance</td>
-<td>not set</td>
-<td>set</td>
+<td>Standard Def 480P</td>
+<td>640</td>
+<td>480</td>
+<td>P or I</td>
 </tr>
 <tr class="even">
-<td>Compression</td>
-<td>lossless</td>
-<td>lossy</td>
-</tr>
-<tr class="odd">
-<td>Portability</td>
-<td>nonstandard</td>
-<td>standard</td>
-</tr>
-<tr class="even">
-<td>Post-processing</td>
-<td>required</td>
-<td>optional</td>
+<td>4K Ultra High Def</td>
+<td>3840</td>
+<td>2160</td>
+<td>P</td>
 </tr>
 </tbody>
 </table>
-<h2 id="references">References</h2>
+<p><img src="./resolutions.png" /></p>
+<p>如今最常见的视频清晰度和宽高比如上表和上图所示。其中 1080P、720P、480P 中的数字指的是视频高度，而 4K 指的是视频宽度。P 指的是 progressive，视频播放时每帧都是完整的画面；I 指的是 interlaced，视频播放时每帧都只加载一半的像素，用以节省带宽。但现在 interlaced 已经很少使用，未来将逐渐淡出我们的视野，在最新的 4K 标准中，已经不再支持 interlaced 类型的 frame rate。</p>
+<p>1080P 已经达到了人眼的感受边界，更高的清晰度对于人眼来说没有太大的意义，而且更高的分辨率意味着更多数据需要存放、运输、编辑，那为什么还需要拍摄 4K 视频？理由之一和超过 24 FPS 类似，可以让剪辑师在后期留下空间，如裁剪、重新构图等。</p>
+<h3 id="对焦">对焦</h3>
+<p>在拍摄视频的时候，一定要通过「zoom in」按钮放大画面，确保被摄主体合焦。免得在后期的时候捶胸顿足。</p>
+<h3 id="时间">时间</h3>
+<p>视频和照片拍摄的另一区别在于视频多了一个时间维度。基于此会有一些视频的表现技法，比如 pull focus：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/tT_qv9ptauU" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<p>要精准地将焦点从物体 A 移动到物体 B，有很强的技巧性，practive makes perfect。</p>
+<h3 id="镜头类型">镜头类型</h3>
+<h4 id="establishing">Establishing</h4>
+<p>Establishing shot 在引入新场景，如电影开场，或者交代事件发生地点的时候使用：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/Axt0nETgEXo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h4 id="wide">Wide</h4>
+<p>Wide shot 包含一个和多个人物的全身信息，也被称为 long short 或 full shot。通常被用来交代空间关系，如人物之间的距离：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/BnPux1u2fFo" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h4 id="medium">Medium</h4>
+<p>Meidum shot 包含一个人物腰以上的部分：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/dQV2-6_0ZeY" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h4 id="close-up">Close-up</h4>
+<p>Close-up shot 包含一个人物的脸，通常用来：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="http://digitalphotography.exposed/slides/9.pdf">slides</a></li>
+<li>表达重要的情绪</li>
+<li>展现故事重要的瞬间</li>
+<li>刻画人物表情变化</li>
+<li>...</li>
+</ul>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/rc2urzXP4ok" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h4 id="extreme-close-up">Extreme Close-up</h4>
+<p>Extreme close-up shot 包含一个人物脸上的某一部分，功能上与 close-up shot 类似，但更具张力：</p>
+<div class="video-container"><iframe src="https://www.youtube.com/embed/W_-D-yzzbxE" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h3 id="音频">音频</h3>
+<p>不要使用相机内置的麦克风，请使用外置的录音工具。</p>
+<h3 id="sd-卡">SD 卡</h3>
+<p>拍摄 1 分钟 1080P 的视频大约需要 1GB 存储空间，此外 SD 卡还需要具备足够的吞吐能力，综上所述建议携带大于 64GB 的 Class 10 SD 卡。</p>
+<h2 id="视频后期">视频后期</h2>
+<p>后半节课介绍了如何使用 Adobe Premiere 制作视频，这里仅罗列一些功能点：</p>
+<ul>
+<li>Photo slideshow with music (with rhyme)</li>
+<li>Sync audio</li>
+<li>Time lapse</li>
+</ul>
+<p>需要的时候，建议直接看教程系统地学习。</p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://vimeo.com/blog/post/frame-rate-vs-shutter-speed-setting-the-record-str/">Frame rate vs. shutter speed, setting the record straight</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.adobe.com/uk/creativecloud/video/discover/establishing-shot.html">Establishing shot</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.nfi.edu/wide-shot/">Wide shot: everything you need to know</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.nfi.edu/medium-shot/">Medium shot: everything you need to know</a></li>
 </ul>
 
 </div>
@@ -287,7 +303,7 @@ function sidebar_toggle() {
     <!-- Author title -->
     <div class="author-title">
       <div>郑鹤</div>
-      <div>2021-07-19</div>
+      <div>2021-07-21</div>
     </div>
   </div>
 
