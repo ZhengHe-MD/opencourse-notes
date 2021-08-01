@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+
+    
+      <link rel="icon" href="/opencourse-notes/favicon.png" />
+    
+
+    <title>
+        
+          Lecture-11-Color-And-Artifacts - 公开课笔记
+        
+    </title>
+
+    <!-- Spectre.css framework -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectre.css/0.5.9/spectre-icons.min.css">
+
+    <!-- theme css & js -->
+    
+<link rel="stylesheet" href="/opencourse-notes/css/book.css">
+
+    
+<script src="/opencourse-notes/js/book.js"></script>
+
+
+    <!-- tocbot -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.4.2/tocbot.css">
+    
+    <!-- katex -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+
+    
+<!-- Google Analytics -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-172943223-3', 'auto');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/zooming/2.1.1/zooming.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const zooming = new Zooming()
+    zooming.listen('.book-content img')
+})
+</script>
+
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+<body>
+
+<div class="book-container">
+  <div class="book-sidebar">
+    <div class="book-brand">
+  <a href="/opencourse-notes/">
+    <img src="/opencourse-notes/favicon.png">
+    <span>公开课笔记</span>
+  </a>
+</div>
+    <div id="menu" class="book-menu hide">
+  <h1 id="算法与数据结构">算法与数据结构</h1>
+<h2 id="mit-6.006">MIT 6.006</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-8-Hashing-I">Lecture 8: Hashing I</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-9-Hashing-II">Lecture 9: Hashing II</a></li>
+<li><a href="/opencourse-notes/MIT-6-006/Lecture-10-Hashing-III">Lecture 10: Hashing III</a></li>
+</ul>
+<h2 id="mit-6.046j">MIT 6.046J</h2>
+<ul>
+<li><a href="/opencourse-notes/MIT-6-046J/Lecture-8-Hashing">Lecture 8: Hashing</a></li>
+</ul>
+<h2 id="cs-229r">CS 229r</h2>
+<ul>
+<li><a href="/opencourse-notes/CS-229r/Lecture-1">Lecture 1</a></li>
+<li><a href="/opencourse-notes/CS-229r/Lecture-2">Lecture 2</a></li>
+</ul>
+<h1 id="数据库">数据库</h1>
+<h1 id="摄影">摄影</h1>
+<h2 id="dgmd-e-10">DGMD E-10</h2>
+<ul>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-1-Welcome">Lecture 1: Welcome!</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-2-Software-Tools-Light">Lecture 2: Software Tools &amp; Light</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-3-Exposure">Lecture 3: Exposure</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-4-Exposure-Continued">Lecture 4: Exposure (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-5-Optics">Lecture 5: Optics</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-6-Histogram">Lecture 6: Histogram</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-7-Software-Tools">Lecture 7: Software Tools</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-8-Digital-Cameras">Lecture 8: Digital Cameras</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-9-Digital-Cameras-Continued">Lecture 9: Digital Cameras (continued)</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-10-From-Stills-to-Video">Lecture 10: From Stills to Video</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Lecture-11-Color-And-Artifacts">Lecture 11: Color and Artifacts</a></li>
+<li><a href="/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out">Project 1: Keep an I[SO] Out</a></li>
+</ul>
+
+</div>
+
+
+<script src="/opencourse-notes/js/book-menu.js"></script>
+
+  </div>
+
+  <div class="sidebar-toggle" onclick="sidebar_toggle()" onmouseover="add_inner()" onmouseleave="remove_inner()">
+  <div class="sidebar-toggle-inner"></div>
+</div>
+
+<script>
+function add_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.add('show')  
+}
+
+function remove_inner() {
+  let inner = document.querySelector('.sidebar-toggle-inner')
+  inner.classList.remove('show')
+}
+
+function sidebar_toggle() {
+    let sidebar_toggle = document.querySelector('.sidebar-toggle')
+    let sidebar = document.querySelector('.book-sidebar')
+    let content = document.querySelector('.off-canvas-content')
+    if (sidebar_toggle.classList.contains('extend')) { // show
+        sidebar_toggle.classList.remove('extend')
+        sidebar.classList.remove('hide')
+        content.classList.remove('extend')
+    }
+    else { // hide
+        sidebar_toggle.classList.add('extend')
+        sidebar.classList.add('hide')
+        content.classList.add('extend')
+    }
+}
+</script>
+
+  <div class="off-canvas-content">
+    <div class="columns">
+      <div class="column col-10 col-lg-12">
+        <div class="book-navbar">
+          <!-- For Responsive Layout -->
+
+<header class="navbar">
+  <section class="navbar-section">
+    <a onclick="open_sidebar()">
+      <i class="icon icon-menu"></i>
+    </a>
+  </section>
+</header>
+
+        </div>
+        <div class="book-content">
+          <div class="book-post">
+  <div class="video-container"><iframe src="https://www.youtube.com/embed/CmCztK2hi3c" frameborder="0" loading="lazy" allowfullscreen></iframe></div>
+<h2 id="optical-illusions">Optical Illusions</h2>
+<p>人眼具备根据主体周围环境调节适应的能力，比如在白炽灯、正午阳光下看到的同一个物体，会呈现出不同颜色，因此对于人眼来说颜色是相对的。由于人眼的自我调节能力，在一些特定场景下会给人视觉上的幻觉，以下是几个典型的例子。</p>
+<h3 id="example-1">Example 1</h3>
+<p><img src="./illusion-1.png" /></p>
+<p>图中的 A、B 两个方块中的颜色看起来一深一浅，但实际上却是同一种颜色。利用 Photoshop (Ps) 的 brush tool，取 A 色块的颜色，从 A 刷到 B，就能得到下图：</p>
+<p><img src="./illusion-1-with-brush.png" /></p>
+<h3 id="example-2">Example 2</h3>
+<p><img src="./illusion-2-1.png" /></p>
+<p>先凝神盯着图中的黑点 30 秒左右，忽然换成下图 (用 PPT 切换页面效果更佳)：</p>
+<p><img src="./illusion-2-2.png" /></p>
+<p>会发现切换后很短的一瞬间，能看到这栋建筑正常的颜色，但马上就会发现实际上是一张黑白照片。图一是建筑正常颜色的补色，个人认为有点类似 Le Chatelier's principle (勒沙特列原理)。</p>
+<h3 id="example-3">Example 3</h3>
+<p>凝神盯着下图中的黑十字看，会发现粉点逐渐消失，最终只剩下黑十字。</p>
+<p><img src="./illusion-3.png" /></p>
+<blockquote>
+<p>💡 有意思的是，世上甚至存在一个年度幻觉 (视觉上的幻觉是其中之一) 比赛 —「<a target="_blank" rel="noopener" href="http://illusionoftheyear.com/">Best Illusion of The Year Contest</a>」</p>
+</blockquote>
+<h2 id="color-space">Color Space</h2>
+<blockquote>
+<p>ℹ️ 下文中，profile、color space 和 gamut 等价</p>
+</blockquote>
+<p>尽管人眼对于颜色的感受不是绝对的，但计算机喜欢绝对。因此我们需要一个精确的、固定的、可衡量的、可以作为参照的可见光色域 (gamut)，或色彩空间。</p>
+<p>1931 年，International Commission on Illumination (CIE) 基于人类视觉感知模式，利用一批受试者数据，构建了下面这个「CIE 1931」色彩空间，它包含了一般人眼能感知到的所有可见光 (一些特殊人群可能有更强的色彩感知能力)：</p>
+<p><img src="./cie-1931-color-space.png" /></p>
+<p>其中 x 轴可以看作是非线性的 RGB 组合，而 y 轴指代的是亮度 (luminance)。可以看出它是一个 convex 空间，即空间中中任意两点连线的中点仍然位于空间中。而上面这个色域的另一个特点是：图中任意两点所指颜色混合后正好得到其连线中点上的颜色。</p>
+<p><img src="./srgb.png" /></p>
+<p>上图是我们常见的「sRGB」色彩空间，它是「CIE 1931」中的一个子集，是由惠普 (HP) 和微软在 1996 年共建的色彩空间，广泛地被应用于它们生产的显示器、打印机中，以及现在的网页中。上图中的 D65 正是「sRGB」中的绝对白色。</p>
+<p>在 Adobe 系列产品中常常用到的一个色彩空间是「Adobe RGB」，如下图所示：</p>
+<p><img src="./adobe-rgb.png" /></p>
+<p>与「sRGB」相比，「Adobe RGB」主要是在绿色的丰富度上有明显的提升。对于同一组 RGB 取值，在不同色彩空间中对应的实际颜色不一样。</p>
+<h2 id="color-management">Color Management</h2>
+<p>在摄影师、剪辑师的日常工作中，需要在工作流中使用多个设备，一个简单的工作流如下图所示：</p>
+<p><img src="./workflow.png" /></p>
+<ol type="1">
+<li><p>照相机、摄像机中一般内嵌地支持多种色彩空间，也称为 embedded profile</p></li>
+<li><p>从拍摄设备中将影像导入计算机并在后期软件中打开，embedded profile 被转换成 working color space</p></li>
+<li><p>我们在显示器上看到的影像使用的是显示器内置的 profile，即 monitor profile</p></li>
+<li><p>后期完成后的影像被观众在不同的设备中打开，使用的是各自设备的 color space</p></li>
+</ol>
+<p>在必要的时候，比如显示器不直接支持 woking color space，就需要做色彩空间的变换，常见的两种变换方式如下图所示：</p>
+<p><img src="./color-space-transform.png" /></p>
+<p>在调试显示器时，可以借助一些 checkerboard，如：</p>
+<p><img src="./checkerboard.png" /></p>
+<p>具体使用方式可以参考这两篇文章 <a target="_blank" rel="noopener" href="http://www.normankoren.com/color_management_2.html">1</a>、<a target="_blank" rel="noopener" href="http://www.normankoren.com/color_management_2A.html">2</a>。</p>
+<h3 id="gamma">Gamma</h3>
+<p>由于人眼对亮度的感受是非线性的，如 20% 的光就可以让人眼感受到 50% 的亮度 (中间灰)。换句话说，人眼在偏暗的区域具备更强的分辨能力。如果将捕获到的光线性地转化成 [0, 255] 上对应的取值，我们就会花费大量的信息保存人眼无法区分的色彩，因此常用的一种编码方式就是 Gamma 转换：</p>
+<p><img src="./gamma.png" /></p>
+<p>如图所示，当 gamma = 2.2 时，我们大约使用 [0, 255] 中的前 180 个取值编码前 50% 的亮度，根据人眼的感受特点作出相应的调整，使得计算机能够像人眼一样记录信息。常见显示器使用的 gamma 值就是 2.2。图中的 gamma curve 也是一种 tone curve。</p>
+<h3 id="color-temperature">Color Temperature</h3>
+<p>色温是光线中包含颜色成分的计量单位。理论上的绝对黑体在受热后会逐渐由黑变红，转黄，发白，最终出现蓝光。黑体在不同温度下发出的光所含的光谱成分，就称为该温度下的色温。</p>
+<p><img src="./color-temperature.png" /></p>
+<p>通常清晨和傍晚的自然光色温较低，比较柔和；而正午的自然光色温较高，比较刺眼。由于同一个物体在不同的光照条件下拍出的颜色不同，以白色物体为参照，通过调节色温校准白色就是所谓白平衡 (white balance) 调节。</p>
+<h3 id="raw-vs.-jpeg">RAW vs. JPEG</h3>
+<p>根据上述的概念，我们回顾一下 raw 与 jpeg 格式图片所存储信息的区别：</p>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th>RAW</th>
+<th>JPEG</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Bit depth</td>
+<td>10-, 12-, 14-bit</td>
+<td>8-bit</td>
+</tr>
+<tr class="even">
+<td>Tone curve</td>
+<td>Not applied</td>
+<td>Applied</td>
+</tr>
+<tr class="odd">
+<td>White balance</td>
+<td>Not set</td>
+<td>Set</td>
+</tr>
+<tr class="even">
+<td>Compression</td>
+<td>Loseless</td>
+<td>Lossy</td>
+</tr>
+<tr class="odd">
+<td>Portability</td>
+<td>Non-standard</td>
+<td>Standard</td>
+</tr>
+<tr class="even">
+<td>Post-processing</td>
+<td>Required</td>
+<td>Optional</td>
+</tr>
+</tbody>
+</table>
+<h2 id="artifacts">Artifacts</h2>
+<p>由于硬件设备自身的不完美，可能导致成像过程中出现光学像差 (optical aberrations)，本节将简单介绍一些常见的像差现象。</p>
+<h3 id="spherical-aberration">Spherical Aberration</h3>
+<p><img src="./spherical-abberation-1.png" /></p>
+<p>在球面镜片四周会出现折射不精确的问题，使得光线聚焦点不一致，最终导致画面四周出现模糊的现象：</p>
+<p><img src="./spherical-abberation-1-example.png" /></p>
+<h3 id="coma">Coma</h3>
+<p>当光线从侧面进入镜头时，会出现类似的多聚焦点现象：</p>
+<p><img src="./spherical-abberation-2.png" /></p>
+<p>表现在照片上，就是画面四周的点光源呈现彗星 (coma) 状：</p>
+<p><img src="./spherical-abberation-2-example.png" /></p>
+<h3 id="astigmatism">Astigmatism</h3>
+<p>当镜片在一个方向上的曲率与另一个方向上的曲率不同时，就可能出现散光现象：</p>
+<p><img src="./astigmatism.png" /></p>
+<p>这与人眼出现散光现象的原因类似。存在散光的物体成像例子如下：</p>
+<p><img src="./astigmatism-blur.png" /></p>
+<h3 id="vignette">Vignette</h3>
+<p>暗角常常在使用广角镜头拍摄照片时出现，且光圈越大，现象约明显。</p>
+<p><img src="./vignette-example.png" /></p>
+<p>原因看下面这张图：</p>
+<p><img src="./vignette-underlying.png" /></p>
+<p>从角落进入镜头的光自然而然地比中间进入的少，因此容易出现暗角。如果你仔细看 bokeh 在照片四周的成像形状，可以看到类似的现象：</p>
+<p><img src="./vignette-bokeh.png" /></p>
+<p>上面提到暗角实际上是光学暗角 (optical vignetting)。还有一种自然暗角 (natural vignetting)，是由于光线强度随着光线进入镜头的夹角增大而减弱导致：</p>
+<p><img src="./natural-vignetting.png" /></p>
+<h3 id="distortions">Distortions</h3>
+<p>画面畸形存在如下两种情况：</p>
+<p><img src="./distortions.png" /></p>
+<p>当镜片区域的放大率随着其与中轴的距离增加而减少时，会出现 barrel-shaped 畸形；当放大率随着其与中轴的距离增大而增大时，会出现 cushion-shaped 畸形。</p>
+<p>真实的照片举例如下：</p>
+<p><img src="./distortion-example.png" /></p>
+<h3 id="refraction">Refraction</h3>
+<p><img src="./refraction.png" /></p>
+<p>不同波长的光在镜片中的折射率不同，可能导致不同颜色的光的焦点不同，如下图所示：</p>
+<p><img src="./refraction-2.png" /></p>
+<p>体现在照片中就是一些模糊和色边现象：</p>
+<p><img src="./chromatic-blur.png" /></p>
+<p><img src="./chromatic-fringing.png" /></p>
+<p>近年来的相机和镜头在这方面已经有很大的改善。</p>
+<h3 id="diffraction">Diffraction</h3>
+<p>由于光的波动性，光在经过很小的孔后会出现衍射现象：</p>
+<p><img src="./diffraction.png" /></p>
+<p>因此，但我们将光圈大小调节得过小时，就会使得画面变模糊：</p>
+<p><img src="./diffraction-f-number.png" /></p>
+<h3 id="aliasing">Aliasing</h3>
+<p>因为每张图片实际上是由很小的方块构成，因此在边缘就可能会出现不平整的情况。常见的做法就是所谓的 anti-aliasing，在边缘增加过度色块，如下图所示：</p>
+<p><img src="./aliasing.png" /></p>
+<h3 id="moiré">MOIRÉ</h3>
+<p>如果画面中的纹路非常细密，就可能出现摩尔纹现象：</p>
+<p><img src="./moire.png" /></p>
+<p>甚至类似迷宫的花纹：</p>
+<p><img src="./moire-maze.png" /></p>
+<h3 id="sharppening-halos">Sharppening Halos</h3>
+<p>锐化的原理就是找到色差较大的边缘，放大边缘两边的对比度。如果过度使用这样的处理，就可能出现锐化光环：</p>
+<p><img src="./sharpenning-halo.png" /></p>
+<h2 id="参考">参考</h2>
+<ul>
+<li><a target="_blank" rel="noopener" href="http://www.normankoren.com/color_management_2.html">Color management: Implementation part 1</a></li>
+<li><a target="_blank" rel="noopener" href="http://www.normankoren.com/color_management_2A.html">Color management: Implementation part 2</a></li>
+<li>Wikipedia: <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Gamma_correction">Gamma correction</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Color_temperature">Color temperature</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Astigmatism">Astigmatism</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Vignetting">vignette</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Distortion_(optics)">distortion (optics)</a>, <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Moir%C3%A9_pattern">Moire pattern</a></li>
+<li><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%89%B2%E6%B8%A9/103689?fr=aladdin">百度百科：色温</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.lumenera.com/blog/minimizing-spherical-aberration-make-the-right-lens-choice-for-your-imaging-system">Minimizing spherical aberration: make the right lens choice for your imaging system</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.mayoclinic.org/diseases-conditions/astigmatism/symptoms-causes/syc-20353835">Astigmatism: Symptoms &amp; causes</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.dxo.com/technology/vignetting/">Lens vignetting in photography: correcting and maintaining the image's balance</a></li>
+</ul>
+
+</div>
+
+
+  <div class="book-comments">
+    
+
+
+
+
+  </div>
+
+
+
+<script src="/opencourse-notes/js/book-post.js"></script>
+
+        </div>
+      </div>
+      <div class="column col-2 hide-lg">
+        <div class="book-post-info">
+  
+    <div class="book-post-meta">
+
+  <div class="author">
+
+    <!-- Author image -->
+    <div class="author-img">
+      
+        <figure
+          class="avatar avatar-lg"
+          data-initial="郑"
+          style="background-color: #3b4351;">
+        </figure>
+      
+    </div>
+
+    <!-- Author title -->
+    <div class="author-title">
+      <div>郑鹤</div>
+      <div>2021-07-31</div>
+    </div>
+  </div>
+
+  
+
+  <div class="divider"></div>
+</div>
+  
+
+  <div class="book-tocbot">
+</div>
+<div class="book-tocbot-menu">
+  <a class="book-toc-expand" onclick="expand_toc()">Expand all</a>
+  <a onclick="go_top()">Back to top</a>
+  <a onclick="go_bottom()">Go to bottom</a>
+</div>
+
+
+<script src="/opencourse-notes/js/book-toc.js"></script>
+
+</div>
+      </div>
+    </div>
+  </div>
+  
+  <a class="off-canvas-overlay" onclick="hide_canvas()"></a>
+</div>
+
+</body>
+</html>
+
+
+<script src="/opencourse-notes/js/book.js"></script>
