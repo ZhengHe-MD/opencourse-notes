@@ -29,4 +29,5 @@
 * [Lecture 9: Digital Cameras (continued)](/opencourse-notes/DGMD-E-10/Lecture-9-Digital-Cameras-Continued)
 * [Lecture 10: From Stills to Video](/opencourse-notes/DGMD-E-10/Lecture-10-From-Stills-to-Video)
 * [Lecture 11: Color and Artifacts](/opencourse-notes/DGMD-E-10/Lecture-11-Color-And-Artifacts)
+* [Lecture 12: Expanding Your Photography](/opencourse-notes/DGMD-E-10/Lecture-12-Expanding-Your-Photography)
 * [Project 1: Keep an I[SO] Out](/opencourse-notes/DGMD-E-10/Project-1-Keep-an-ISO-Out)
